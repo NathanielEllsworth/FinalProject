@@ -1,7 +1,7 @@
-package com.ironyard.data;
+package com.ironyard.repo;
 
 /**
  * Created by nathanielellsworth on 11/4/16.
  */
-public class Account {
+public class RepoTest {
 }
