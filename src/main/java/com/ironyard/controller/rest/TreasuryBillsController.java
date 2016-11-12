@@ -38,7 +38,7 @@ public class TreasuryBillsController {
         if (filter != null) {
             // filter the list
             for (TreasuryBills aMatch : foundAllList) {
-                if (aMatch.getSecurityType().startsWith(filter)) {
+                if (aMatch.getSecurityTerm().startsWith(filter)) {
                     filteredList.add(aMatch);
                 }
             }

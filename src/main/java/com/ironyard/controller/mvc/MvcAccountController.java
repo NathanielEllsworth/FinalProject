@@ -1,4 +1,4 @@
-package com.ironyard.controller.rest;
+package com.ironyard.controller.mvc;
 
 /**
  * This is where the User can view their transaction history data for each account, Account Balance, make changes, add memos, and
@@ -7,5 +7,5 @@ package com.ironyard.controller.rest;
  *
  * Created by nathanielellsworth on 11/5/16.
  */
-public class AccountController {
+public class MvcAccountController {
 }
