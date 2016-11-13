@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="ClickHereForMoney:war exploded">
-    <output-path>$PROJECT_DIR$/target/spring-1.4.1.RELEASE</output-path>
+    <output-path>$PROJECT_DIR$/target/app</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -80,7 +80,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/spring-1.4.1.RELEASE/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/app/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="ClickHereForMoney/web/Web" />
     </root>

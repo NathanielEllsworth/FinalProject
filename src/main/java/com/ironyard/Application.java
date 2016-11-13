@@ -24,8 +24,7 @@ public class Application {
 
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    public static void main(String[] args) {SpringApplication.run(Application.class, args);
 
 
         RestTemplate restTemplate = new RestTemplate();
@@ -57,5 +56,12 @@ public class Application {
                 .version("2.1")
                 .build();
     }
+
+
+
+
+
+    //Adding Swagger APIs later, want to get this running first.
+
 
 }
