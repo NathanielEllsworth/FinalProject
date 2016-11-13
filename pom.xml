@@ -3,7 +3,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>test</groupId>
     <artifactId>spring</artifactId>
-    <packaging>war</packaging> <!-- TAKE WAR OUT AS SOON AS LOGIN RUNS!! -->
 
     <!-- we are extending from this project POM which means we get
      everything that this pom has (inheritance) -->
@@ -26,21 +25,13 @@
         </dependency>
 
         <!-- database -->
-
-        <!-- https://mvnrepository.com/artifact/com.h2database/ -->
-
-            <!--
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.193</version>
         </dependency>
-            -->
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>RELEASE</version>
-        </dependency>
+
         <!-- auto config for spring stuff -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -115,8 +106,10 @@
 
 
     <build>
+        <!-- will create a jar file named app.jar -->
         <finalName>app</finalName>
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
