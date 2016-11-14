@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 
 /**
  * This is where the User can add, delete, create and rename their different Accounts
@@ -34,25 +35,41 @@ public class MvcUserController {
 
         User fetchedUser = userRepo.findOne(user.getId());
 
-        Accounts accountToRemove = null;
+        Accounts removeAccount = null;
         for(Accounts temp: fetchedUser.getPersonalAccounts()){
             if(temp.getId() == id){
 
                 // this is the account to remove
-                accountToRemove = temp;
+                removeAccount = temp;
             }
         }
 
-        if(accountToRemove != null){
-            fetchedUser.getPersonalAccounts().remove(accountToRemove);
+        if(removeAccount != null){
+            fetchedUser.getPersonalAccounts().remove(removeAccount);
         }
         userRepo.save(fetchedUser);
-        // send to accounts page
+        // send to personal accounts page
         return "redirect:/mvc/secure/accounts/personalAccounts"; //************************************ remember this path
     }
 
     @RequestMapping(value = "personalAccounts/add", method = RequestMethod.GET)
-    public String addAccount(@RequestParam("id") Long id,)
+    public String addAccount(@RequestParam("id") Long id, HttpServletRequest request){
+
+        User user = (User)request.getSession().getAttribute("user");
+
+        User fetchedUser = userRepo.findOne(user.getId());
+
+        Accounts addAccount = acctRepo.findOne(id);
+
+        if(fetchedUser.getPersonalAccounts() == null){
+            fetchedUser.setPersonalAccounts(new HashSet<>());
+        }
+        fetchedUser.getPersonalAccounts().add(addAccount);
+
+        userRepo.save(fetchedUser);
+        // send to personal accounts page
+        return "redirect:/mvc/secure/accounts/personalAccounts";
+    }
 
 }
 
