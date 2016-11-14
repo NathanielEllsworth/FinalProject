@@ -1,9 +1,7 @@
 package com.ironyard.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Each User needs to be able to have their own account(s)
@@ -16,6 +14,20 @@ public class Accounts {
     private String accountName;   // father/son joint account
     private String accountType;   //checking/savings
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Transactions> accountHistory;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Permission> abilities;
+
+    public Set<Transactions> getAccountHistory(){return accountHistory;}
+
+    public void setAccountHistory(Set<Transactions> accountHistory){this.accountHistory = accountHistory;}
+
+    public Set<Permission> getAbilities(){return abilities;}
+
+    public void setAbilities(Set<Permission> abilities){this.abilities = abilities;}
 
     //private customer account holder
 
@@ -33,21 +45,27 @@ public class Accounts {
     }
 
 
+    public String getAccountName() {
+        return accountName;
+    }
 
-    public String getAccountName() {return accountName;}
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 
-    public void setAccountName(String accountName) {this.accountName = accountName;}
+    public String getAccountType() {
+        return accountType;
+    }
 
-    public String getAccountType() {return accountType;}
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
 
-    public void setAccountType(String accountType) {this.accountType = accountType;}
+    public long getId() {
+        return id;
+    }
 
-    public long getId() {return id;}
-
-    public void setId(long id) {this.id = id;}
-
-
-
-
-
+    public void setId(long id) {
+        this.id = id;
+    }
 }

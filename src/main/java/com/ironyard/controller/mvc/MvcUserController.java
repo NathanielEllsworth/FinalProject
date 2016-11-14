@@ -68,7 +68,7 @@ public class MvcUserController {
 
         userRepo.save(fetchedUser);
         // send to personal accounts page
-        return "redirect:/mvc/secure/accounts/personalAccounts";
+        return "redirect:/mvc/secure/accounts/all";
     }
 
 }
