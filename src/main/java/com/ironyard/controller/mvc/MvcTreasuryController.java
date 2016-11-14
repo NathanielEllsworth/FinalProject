@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Controller
 public class MvcTreasuryController {
-    @RequestMapping(value = "/us/gdp", method = RequestMethod.GET)
+    @RequestMapping(value = "mvc/secure/account/savings/treasurybills", method = RequestMethod.GET)
     public String list(Map<String, Object> model) {
 
         RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));

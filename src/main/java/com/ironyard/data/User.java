@@ -22,7 +22,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Permission> approval;
 
-    public Set<Accounts> getPersonalAccounts(){return personalAccounts;}
+    public Set<Accounts> getPersonalAccounts(){return personalAccounts;} // ******************   Favs   =   PersonalAccounts   *******************
 
     public void setPersonalAccounts(Set<Accounts> personalAccounts){this.personalAccounts = personalAccounts;}
 
