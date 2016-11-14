@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
- * the Custodian Controller allows a parent/guardian or spouse to have discretionary control over particular
+ * the Custodian Controller allows a parent/guardian or spouse to have discretionary control over
  * account(s) or sub-account(s) of a loved one, this feature would be used in the same context as an
- * investment manager
+ * investment manager.
  *
  * Created by nathanielellsworth on 11/14/16.
  */
@@ -84,7 +85,69 @@ public class MvcCustodianController {
     }
 
     @RequestMapping(value = "user/save", method = RequestMethod.POST)
-    public String
+    public String saveUser(@RequestParam("id") Long id,
+                           @RequestParam("username") String username,
+                           @RequestParam("displayname") String displayname,
+                           @RequestParam("password") String password,
+                           @RequestParam("password2") String password2,
+                           @RequestParam(value = "permissions", required = false) Long[] perms,
+                           Model model){
+
+        String destination = "redirect:/mvc/secure/admin/users";
+
+        if(!password.equals(password2)){
+            model.addAttribute("error_message","Passwords do not match");
+            addPermListAndUser(model);
+            destination = "/secure/custodian_user";
+
+
+            model.addAttribute("username", username);
+            model.addAttribute("displayname", displayname);
+            model.addAttribute("id", id);
+
+        }else{
+            if(id == null){
+                //create the user
+                User aNewUser = new User();
+                aNewUser.setUsername(username);
+                aNewUser.setDisplayName(displayname);
+                aNewUser.setPassword(password);
+
+                if(perms != null){
+                    aNewUser.setApproval(new HashSet<>());
+                    //fetch perms
+                    for (int i = 0; i < perms.length; i++){
+                        aNewUser.getApproval().add(permRepo.findOne(perms[i]));
+                    }
+                }
+                userRepo.save(aNewUser);
+            }else{
+
+                //edit the user
+                User editUser = userRepo.findOne(id);
+                editUser.setUsername(username);
+                editUser.setDisplayName(displayname);
+                editUser.setPassword(password);
+
+                //clear out any and all existing permissions
+                if(editUser.getApproval() != null){
+                    editUser.getApproval().clear();
+                }else{
+                    editUser.setApproval(new HashSet<>());
+                }
+
+                // add any selected
+                if(perms != null && perms.length >0) {
+                    //fetch permissions and add
+                    for (int i = 0; i < perms.length; i++) {
+                        editUser.getApproval().add(permRepo.findOne(perms[i]));
+                    }
+                }
+                userRepo.save(editUser);
+            }
+        }
+        return destination;
+    }
 
 
 
