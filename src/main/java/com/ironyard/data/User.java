@@ -19,8 +19,8 @@ public class User {
     @ManyToOne(fetch = FetchType.EAGER)
     private Set<RiskFreeAccount> riskFree;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Accounts> personalAccounts;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private Set<Accounts> personalAccounts;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Permission> approval;
@@ -31,9 +31,9 @@ public class User {
 
 
 
-    public Set<Accounts> getPersonalAccounts(){return personalAccounts;} // ******************   Favs   =   PersonalAccounts   *******************
+//    public Set<Accounts> getPersonalAccounts(){return personalAccounts;} // ******************   Favs   =   PersonalAccounts   *******************
 
-    public void setPersonalAccounts(Set<Accounts> personalAccounts){this.personalAccounts = personalAccounts;}
+//    public void setPersonalAccounts(Set<Accounts> personalAccounts){this.personalAccounts = personalAccounts;}
 
     public Set<Permission> getApproval(){return approval;}
 
