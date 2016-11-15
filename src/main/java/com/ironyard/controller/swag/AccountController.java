@@ -3,6 +3,8 @@ package com.ironyard.controller.swag;
 import com.ironyard.data.Accounts;
 import com.ironyard.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +52,48 @@ public class AccountController {
 
 
 
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public Iterable<Accounts> listAll(@RequestParam("page") Integer page,
+                                      @RequestParam("size") Integer size,
+                                      @RequestParam(value = "sortby", required = false) String sortby,
+                                      @RequestParam(value = "dir", required = false)Sort.Direction direction){
 
-    
+        log.debug(String.format("Begin listAll (page:%s, size:%s, sortby:%s, dir:%s):", page, size, sortby, direction));
+
+
+        //Auto sorting default
+        if(sortby == null){
+            sortby = "title";
+        }
+
+        //Auto sorting direction default
+        if(direction == null){
+            direction = Sort.Direction.DESC;
+        }
+        Sort s = new Sort(direction, sortby);
+        PageRequest pr = new PageRequest(page, size, s);
+        Iterable<Accounts> found = acctRepo.findAll(pr);
+        log.debug(String.format("End listAll: %s", found));
+
+        return found;
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public Accounts delete(@PathVariable Long id){
+        log.debug(String.format("Begin delete: %s", id));
+        Accounts deleted = acctRepo.findOne(id);
+        acctRepo.delete(id);
+        log.debug(String.format("End delete: %s", deleted));
+        return deleted;
+    }
+
+
+
+    @ExceptionHandler(value = Throwable.class)
+    public String nfeHandler(Throwable e){
+        log.error("Error in Account Controller", e);
+        return "Something went wrong (ac)";
+    }
+
 
 }
