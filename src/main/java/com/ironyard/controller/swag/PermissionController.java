@@ -65,9 +65,24 @@ public class PermissionController {
         Sort s = new Sort(direction, sortby);
         PageRequest pr = new PageRequest(page, size, s);
         return permRepo.findAll(pr);
-
-
     }
+
+
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public Permission delete(@PathVariable Long id){
+        Permission deleted = permRepo.findOne(id);
+        permRepo.delete(id);
+        return deleted;
+    }
+
+
+    @ExceptionHandler(value = Throwable.class)
+    public String nfeHandler(Throwable e){
+        log.error("Error in Permission Controller", e);
+        return("Something went wrong (pc)");
+    }
+
 
 
 

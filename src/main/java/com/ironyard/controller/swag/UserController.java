@@ -91,7 +91,7 @@ public class UserController {
     @ExceptionHandler(value = Throwable.class)
     public String nfeHandler(Throwable e){
         log.error("Error in UserController", e);
-        return "Something went wrong";
+        return "Something went wrong (uc)";
     }
 
 
