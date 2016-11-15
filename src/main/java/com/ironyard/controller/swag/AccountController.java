@@ -1,7 +1,11 @@
 package com.ironyard.controller.swag;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ironyard.data.Accounts;
+import com.ironyard.repositories.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *  laying the pipes
@@ -11,4 +15,42 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/rest/account")
 public class AccountController {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private AccountRepository acctRepo;
+
+
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public Accounts save(@RequestBody Accounts aAccount){
+        log.debug("Begin save:" + aAccount);
+        acctRepo.save(aAccount);
+        Accounts found = acctRepo.findOne(aAccount.getId());
+        return found;
+    }
+
+
+    @RequestMapping(value = "update", method = RequestMethod.PUT)
+    public Accounts update(@RequestBody Accounts aAccount){
+        log.debug("begin update:" + aAccount);
+        acctRepo.save(aAccount);
+        Accounts found = acctRepo.findOne(aAccount.getId());
+        log.debug("End update:" + found);
+        return found;
+    }
+
+    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
+    public Accounts show(@PathVariable Long id){
+        log.debug("Begin show:" + id);
+        Accounts found = acctRepo.findOne(id);
+        log.debug("End show:" + found);
+        return found;
+    }
+
+
+
+
+    
+
 }
