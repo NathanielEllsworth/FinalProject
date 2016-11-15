@@ -93,7 +93,7 @@ public class UserController {
         log.error("Error in UserController", e);
         return "Something went wrong";
     }
-    
+
 
 
 
