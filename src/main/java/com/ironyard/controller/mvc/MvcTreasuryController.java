@@ -26,12 +26,12 @@ public class MvcTreasuryController {
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<ClientHttpRequestInterceptor>();
         interceptors.add(new LoggingRequestInterceptor());
         restTemplate.setInterceptors(interceptors);
-        TreasuryBills[] USgdp = restTemplate.getForObject("http://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill" , TreasuryBills[].class);
+        TreasuryBills[] tBills = restTemplate.getForObject("http://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill" , TreasuryBills[].class);
 
         // GET RID OF ALL THE %20 IN THE URL's!! (those represent blank spaces)
 
-        model.put("country", USgdp);
-        return "Treasury";
+        model.put("TreasuryBills", tBills);
+        return "home";
 
 
     }

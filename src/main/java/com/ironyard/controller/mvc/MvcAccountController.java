@@ -1,6 +1,7 @@
 package com.ironyard.controller.mvc;
 
 import com.ironyard.data.Accounts;
+import com.ironyard.data.RiskFreeAccount;
 import com.ironyard.data.Transactions;
 import com.ironyard.data.User;
 import com.ironyard.dto.AccountPager;
@@ -44,8 +45,30 @@ public class MvcAccountController {
 
 
 
-    @RequestMapping(value = "personalAccounts", method = RequestMethod.GET)
+    @RequestMapping(value = "riskFree", method = RequestMethod.GET)
     public String home(Model model, HttpServletRequest request){
+
+        // get current logged in user
+        User user = (User)request.getSession().getAttribute("user");
+
+        Long usrId = user.getId();
+
+        // get users accounts
+        Set<RiskFreeAccount> riskFree = userRepo.findOne(usrId).getRiskFree();
+
+        // put them in a model
+        model.addAttribute("riskFree", riskFree);
+
+        // send them to the home page
+
+        return "/secure/home"; //send to home page or accounts? if home page I need to make a home page.
+                                // think about what a 'home page' would look like
+    }
+
+
+
+    @RequestMapping(value = "personalAccounts", method = RequestMethod.GET)
+    public String MyAccounts(Model model, HttpServletRequest request){
 
         // get current logged in user
         User user = (User)request.getSession().getAttribute("user");
@@ -60,8 +83,8 @@ public class MvcAccountController {
 
         // send them to the home page
 
-        return "/secure/home"; //send to home page or accounts? if home page I need to make a home page.
-                                // think about what a 'home page' would look like
+        return "/secure/myaccounts"; //send to account page? if home page I need to make a home page.
+        // think about what a 'home page' would look like
     }
 
 
@@ -89,7 +112,7 @@ public class MvcAccountController {
 
 
         // again send to home page or accounts?
-        return "/secure/list_all_accounts";
+        return "/secure/myaccounts/list_all_accounts";
     }
 
 //______________________________________________________________________________________________________________________
@@ -112,7 +135,7 @@ public class MvcAccountController {
         model.addAttribute("accountHistory", accountHistory);
 
         // send them to the account details page
-        return "/secure/home/details";
+        return "/secure/myaccounts/details";
     }
 
 
@@ -138,7 +161,7 @@ public class MvcAccountController {
 
 
         // Should I send them to accounts or all the way back to a homepage? (makes since to send them to accounts)
-        return "/secure/list_all_transactions";
+        return "/secure/myaccounts/details/list_all_transactions";
 
 
     }

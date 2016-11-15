@@ -93,7 +93,7 @@ public class MvcCustodianController {
                            @RequestParam(value = "permissions", required = false) Long[] perms,
                            Model model){
 
-        String destination = "redirect:/mvc/secure/admin/users";
+        String destination = "redirect:/mvc/secure/custodian/users";
 
         if(!password.equals(password2)){
             model.addAttribute("error_message","Passwords do not match");

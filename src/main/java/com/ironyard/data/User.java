@@ -16,11 +16,20 @@ public class User {
     private String password;
     private String displayName;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Set<RiskFreeAccount> riskFree;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Accounts> personalAccounts;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Permission> approval;
+
+    public Set<RiskFreeAccount> getRiskFree() {return riskFree;}
+
+    public void setRiskFree(Set<RiskFreeAccount> riskFree) {this.riskFree = riskFree;}
+
+
 
     public Set<Accounts> getPersonalAccounts(){return personalAccounts;} // ******************   Favs   =   PersonalAccounts   *******************
 

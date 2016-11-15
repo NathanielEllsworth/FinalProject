@@ -18,8 +18,6 @@ public class Transactions {
     private String description;
     private boolean debit;        // (-)
     private boolean credit;       // (+)
-    private String term;                   // only for savings accounts
-    private boolean rate;                  // only for savings accounts
     private boolean postedBalance;   //**posted balance is the same as Balance**
 
 
@@ -30,14 +28,12 @@ public class Transactions {
     public Transactions(){
     }
 
-    public Transactions(Date date, String type, String description, boolean debit, boolean credit, String term, boolean rate, boolean postedBalance) {
+    public Transactions(Date date, String type, String description, boolean debit, boolean credit, boolean postedBalance) {
         this.date = date;
         this.type = type;
         this.description = description;
         this.debit = debit;
         this.credit = credit;
-        this.term = term;
-        this.rate = rate;
         this.postedBalance = postedBalance;
     }
 
@@ -79,22 +75,6 @@ public class Transactions {
 
     public void setCredit(boolean credit) {
         this.credit = credit;
-    }
-
-    public String getTerm() {
-        return term;
-    }
-
-    public void setTerm(String term) {
-        this.term = term;
-    }
-
-    public boolean isRate() {
-        return rate;
-    }
-
-    public void setRate(boolean rate) {
-        this.rate = rate;
     }
 
     public boolean isPostedBalance() {

@@ -73,14 +73,14 @@
 </div>
 <table border="1" class="table">
     <h4><tr><th>securityTerm</th><th>cusip</th><th>issueDate</th><th>maturityDate</th><th>Risk-Free-Return</th></tr></h4>
-    <c:forEach items="${country}" var="aGDP">
+    <c:forEach items="${TreasuryBills}" var="aBill">
     <tr>
 
-        <td><c:out value="${aGDP.securityTerm}"/></td>
-        <td><c:out value="${aGDP.cusip}"/></td>
-        <td><c:out value="${aGDP.issueDate}"/></td>
-        <td><c:out value="${aGDP.maturityDate}"/></td>
-        <td><c:out value="${aGDP.highInvestmentRate}"/></td>
+        <td><c:out value="${aBill.securityTerm}"/></td>
+        <td><c:out value="${aBill.cusip}"/></td>
+        <td><c:out value="${aBill.issueDate}"/></td>
+        <td><c:out value="${aBill.maturityDate}"/></td>
+        <td><c:out value="${aBill.highInvestmentRate}"/></td>
         </c:forEach>
 
     <tr>
