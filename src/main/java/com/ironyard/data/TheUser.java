@@ -11,7 +11,7 @@ import java.util.Set;
  */
 
 @Entity
-public class User {
+public class TheUser {
     private String username;
     private String password;
     private String displayName;
@@ -54,12 +54,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public User(){
+    public TheUser(){
 
     }
 
 
-    public User(String username, String password, String displayName) {
+    public TheUser(String username, String password, String displayName) {
         this.username = username;
         this.password = password;
         this.displayName = displayName;

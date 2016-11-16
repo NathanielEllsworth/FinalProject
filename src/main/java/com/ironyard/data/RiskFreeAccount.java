@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,13 +21,13 @@ public class RiskFreeAccount {
     private String date;
     private String type;
     private String description;
-    private double debit;        // (-)
-    private double credit;       // (+)
+    private BigDecimal debit;        // (-)
+    private BigDecimal credit;       // (+)
     private String term;                           // only for savings accounts
-    private double treasuryRate;                  // only for savings accounts
-    private double bankRate;
-    private double rateDifference; //percent % difference between -treasury rate-  and -bank rate-
-    private double postedBalance;            //**posted balance is the same as Balance**
+    private BigDecimal tBillRate;                  // only for savings accounts
+    private BigDecimal bankRate;
+    private BigDecimal rateDifference; //percent % difference between -treasury rate-  and -bank rate-
+    private BigDecimal postedBalance;            //**posted balance is the same as Balance**
 
 
 

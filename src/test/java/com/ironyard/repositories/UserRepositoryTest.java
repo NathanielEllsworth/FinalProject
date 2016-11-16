@@ -2,16 +2,14 @@ package com.ironyard.repositories;
 
 import com.ironyard.data.Permission;
 import com.ironyard.data.RiskFreeAccount;
-import com.ironyard.data.User;
+import com.ironyard.data.TheUser;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
@@ -31,7 +29,7 @@ public class UserRepositoryTest {
     private RiskFreeRepository riskRepo;
 
     @Autowired
-    private UserRepository userRepo;
+    private TheUserRepository userRepo;
 
     @Test
     public void testUserAccount() throws Exception{
@@ -42,16 +40,16 @@ public class UserRepositoryTest {
         Permission savedPermission = permRepo.save(new Permission("BUY_TREASURY_BILLS", "Ability to buy Treasury Bills with an account balance of $1,000 or more."));
 
         //create user
-        User tstUser = new User("Nate Ellsworth", "password", "nate");
+        TheUser tstUser = new TheUser("Nate Ellsworth", "password", "nate");
         tstUser.setriskFree(new HashSet());
         tstUser.getriskFree().add(savedRiskFreeAccount);
 
         tstUser.setApproval(new HashSet());
         tstUser.getApproval().add(savedPermission);
-        userRepo.save(new User());
+        userRepo.save(new TheUser());
 
         // confirm all relationships
-        User fetchedUser = userRepo.findOne(tstUser.getId());
+        TheUser fetchedUser = userRepo.findOne(tstUser.getId());
 
         assertEquals(savedPermission.getId(), fetchedUser.getApproval().iterator().next().getId());
         assertEquals(savedRiskFreeAccount.getId(), fetchedUser.getriskFree().iterator().next().getId());

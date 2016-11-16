@@ -1,6 +1,6 @@
 package com.ironyard.repositories;
 
-import com.ironyard.data.User;
+import com.ironyard.data.TheUser;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -8,8 +8,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * Created by nathanielellsworth on 11/12/16.
  */
-public interface UserRepository extends PagingAndSortingRepository<User, Long>{
+public interface TheUserRepository extends PagingAndSortingRepository<TheUser, Long>{
 
-    User  findByUsernameAndPassword(String username, String password);
+    TheUser findByUsernameAndPassword(String username, String password);
 
 }

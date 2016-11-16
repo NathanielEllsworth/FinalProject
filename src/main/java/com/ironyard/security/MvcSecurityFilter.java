@@ -1,6 +1,6 @@
 package com.ironyard.security;
 
-import com.ironyard.data.User;
+import com.ironyard.data.TheUser;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ public class MvcSecurityFilter implements javax.servlet.Filter {
         HttpServletRequest req = ((HttpServletRequest) servletRequest);
         HttpServletResponse resp = ((HttpServletResponse) servletResponse);
         // check session
-        User usr = (User) req.getSession().getAttribute("user");
+        TheUser usr = (TheUser) req.getSession().getAttribute("user");
         boolean authorized = (usr != null);
 
         if(authorized){
