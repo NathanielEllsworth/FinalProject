@@ -32,18 +32,8 @@ public class RiskFreeAccount {
 
     // good ole JPA
     @Id
-    @GeneratedValue(generator = "customForeignGenerator")
-    @GenericGenerator(
-            name = "customForeignGenerator",
-            strategy = "foreign",
-            parameters = @Parameter( name = "property", value = "User")
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @OneToOne(mappedBy = "riskFreeAccount")
-    @PrimaryKeyJoinColumn
-    public User user;
-
 
 
     public RiskFreeAccount() {

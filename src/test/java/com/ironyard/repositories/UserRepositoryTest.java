@@ -3,6 +3,8 @@ package com.ironyard.repositories;
 import com.ironyard.data.Permission;
 import com.ironyard.data.RiskFreeAccount;
 import com.ironyard.data.User;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 import java.util.HashSet;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -39,17 +43,30 @@ public class UserRepositoryTest {
 
         //create user
         User tstUser = new User("Nate Ellsworth", "password", "nate");
-        tstUser.setriskFreeAccount(new HashSet<>());
-        tstUser.getriskFreeAccount().add(savedRiskFreeAccount);
+        tstUser.setriskFree(new HashSet());
+        tstUser.getriskFree().add(savedRiskFreeAccount);
 
-        tstUser.setApproval(new HashSet<>());
+        tstUser.setApproval(new HashSet());
         tstUser.getApproval().add(savedPermission);
         userRepo.save(new User());
 
         // confirm all relationships
         User fetchedUser = userRepo.findOne(tstUser.getId());
 
-        assertEquals
+        assertEquals(savedPermission.getId(), fetchedUser.getApproval().iterator().next().getId());
+        assertEquals(savedRiskFreeAccount.getId(), fetchedUser.getriskFree().iterator().next().getId());
+
+
+        long riskFreeId = fetchedUser.getriskFree().iterator().next().getId();
+        long permId = fetchedUser.getApproval().iterator().next().getId();
+
+        //testing delete
+        userRepo.delete(fetchedUser.getId());
+
+        // account permission should still exist
+        Assert.assertNotNull(riskRepo.findOne(riskFreeId));
+        Assert.assertNotNull(permRepo.findOne(permId));
+
 
     }
 

@@ -19,13 +19,12 @@ public class User {
 
 
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
-    private Set<RiskFreeAccount> riskFreeAccount;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<RiskFreeAccount> riskFree;
 
-    public Set<RiskFreeAccount> getriskFreeAccount(){return riskFreeAccount;}
+    public Set<RiskFreeAccount> getriskFree(){return riskFree;}
 
-    public void setriskFreeAccount(Set<RiskFreeAccount> riskFreeAccount){this.riskFreeAccount = riskFreeAccount;}
+    public void setriskFree(Set<RiskFreeAccount> riskFree){this.riskFree = riskFree;}
 
 
 
