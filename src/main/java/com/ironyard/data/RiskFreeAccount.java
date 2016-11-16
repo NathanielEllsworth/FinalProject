@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
 import javax.persistence.Entity;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,19 +17,20 @@ import java.util.Date;
 public class RiskFreeAccount {
 
 
-    private Date date;
+    private String date;
     private String type;
     private String description;
-    private boolean debit;        // (-)
-    private boolean credit;       // (+)
+    private double debit;        // (-)
+    private double credit;       // (+)
     private String term;                           // only for savings accounts
-    private boolean treasuryRate;                  // only for savings accounts
-    private boolean bankRate;
-    private boolean rateDifference; //percent % difference between -treasury rate-  and -bank rate-
-    private boolean postedBalance;            //**posted balance is the same as Balance**
+    private double treasuryRate;                  // only for savings accounts
+    private double bankRate;
+    private double rateDifference; //percent % difference between -treasury rate-  and -bank rate-
+    private double postedBalance;            //**posted balance is the same as Balance**
 
 
 
+    // good ole JPA
     @Id
     @GeneratedValue(generator = "customForeignGenerator")
     @GenericGenerator(
@@ -49,8 +51,7 @@ public class RiskFreeAccount {
     }
 
 
-
-    public RiskFreeAccount(Date date, String type, String description, boolean debit, boolean credit, String term, boolean treasuryRate, boolean bankRate, boolean rateDifference, boolean postedBalance) {
+    public RiskFreeAccount(String date, String type, String description, double debit, double credit, String term, double treasuryRate, double bankRate, double rateDifference, double postedBalance) {
         this.date = date;
         this.type = type;
         this.description = description;
@@ -63,50 +64,91 @@ public class RiskFreeAccount {
         this.postedBalance = postedBalance;
     }
 
+    public String getDate() {
+        return date;
+    }
 
-    public Date getDate() {return date;}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-    public void setDate(Date date) {this.date = date;}
+    public String getType() {
+        return type;
+    }
 
-    public String getType() {return type;}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public void setType(String type) {this.type = type;}
+    public String getDescription() {
+        return description;
+    }
 
-    public String getDescription() {return description;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public void setDescription(String description) {this.description = description;}
+    public double getDebit() {
+        return debit;
+    }
 
-    public boolean isDebit() {return debit;}
+    public void setDebit(double debit) {
+        this.debit = debit;
+    }
 
-    public void setDebit(boolean debit) {this.debit = debit;}
+    public double getCredit() {
+        return credit;
+    }
 
-    public boolean isCredit() {return credit;}
+    public void setCredit(double credit) {
+        this.credit = credit;
+    }
 
-    public void setCredit(boolean credit) {this.credit = credit;}
+    public String getTerm() {
+        return term;
+    }
 
-    public String getTerm() {return term;}
+    public void setTerm(String term) {
+        this.term = term;
+    }
 
-    public void setTerm(String term) {this.term = term;}
+    public double getTreasuryRate() {
+        return treasuryRate;
+    }
 
-    public boolean isTreasuryRate() {return treasuryRate;}
+    public void setTreasuryRate(double treasuryRate) {
+        this.treasuryRate = treasuryRate;
+    }
 
-    public void setTreasuryRate(boolean treasuryRate) {this.treasuryRate = treasuryRate;}
+    public double getBankRate() {
+        return bankRate;
+    }
 
-    public boolean isBankRate() {return bankRate;}
+    public void setBankRate(double bankRate) {
+        this.bankRate = bankRate;
+    }
 
-    public void setBankRate(boolean bankRate) {this.bankRate = bankRate;}
+    public double getRateDifference() {
+        return rateDifference;
+    }
 
-    public boolean isRateDifference() {return rateDifference;}
+    public void setRateDifference(double rateDifference) {
+        this.rateDifference = rateDifference;
+    }
 
-    public void setRateDifference(boolean rateDifference) {this.rateDifference = rateDifference;}
+    public double getPostedBalance() {
+        return postedBalance;
+    }
 
-    public boolean isPostedBalance() {return postedBalance;}
+    public void setPostedBalance(double postedBalance) {
+        this.postedBalance = postedBalance;
+    }
 
-    public void setPostedBalance(boolean postedBalance) {this.postedBalance = postedBalance;}
+    public long getId() {
+        return id;
+    }
 
-    public long getId() {return id;}
-
-    public void setId(long id) {this.id = id;}
-
-    
+    public void setId(long id) {
+        this.id = id;
+    }
 }
