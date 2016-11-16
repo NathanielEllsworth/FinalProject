@@ -16,28 +16,33 @@ public class User {
     private String password;
     private String displayName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Set<RiskFreeAccount> riskFree;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    private Set<Accounts> personalAccounts;
+
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private RiskFreeAccount riskFreeAccount;
+
+
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Permission> approval;
 
-    public Set<RiskFreeAccount> getRiskFree() {return riskFree;}
+    public Set<Permission> getApproval(){return approval;}
 
-    public void setRiskFree(Set<RiskFreeAccount> riskFree) {this.riskFree = riskFree;}
+    public void setApproval(Set<Permission> approval){this.approval = approval;}
 
 
+
+
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private Set<Accounts> personalAccounts;
 
 //    public Set<Accounts> getPersonalAccounts(){return personalAccounts;} // ******************   Favs   =   PersonalAccounts   *******************
 
 //    public void setPersonalAccounts(Set<Accounts> personalAccounts){this.personalAccounts = personalAccounts;}
 
-    public Set<Permission> getApproval(){return approval;}
-
-    public void setApproval(Set<Permission> approval){this.approval = approval;}
 
 
 
