@@ -21,14 +21,14 @@ public class RiskFreeAccount {
     private String date;
     private String type;
     private String description;
-    private BigDecimal debit;        // (-)
-    private BigDecimal credit;       // (+)
+    private double debit;        // (-)
+    private double credit;       // (+)
     private String term;                           // only for savings accounts
-    private BigDecimal tBillRate;                  // only for savings accounts
-    private BigDecimal bankRate;
-    private BigDecimal rateDifference; //percent % difference between -treasury rate-  and -bank rate-
-    private BigDecimal postedBalance;            //**posted balance is the same as Balance**
-
+    private double tBillRate;                  // only for savings accounts
+    private double bankRate;
+    private double rateDifference; //percent % difference between -treasury rate-  and -bank rate-
+    private double postedBalance;            //**posted balance is the same as Balance**
+    private double availableBalance;
 
 
     // good ole JPA
@@ -42,17 +42,18 @@ public class RiskFreeAccount {
     }
 
 
-    public RiskFreeAccount(String date, String type, String description, double debit, double credit, String term, double treasuryRate, double bankRate, double rateDifference, double postedBalance) {
+    public RiskFreeAccount(String date, String type, String description, double debit, double credit, String term, double tBillRate, double bankRate, double rateDifference, double postedBalance, double availableBalance) {
         this.date = date;
         this.type = type;
         this.description = description;
         this.debit = debit;
         this.credit = credit;
         this.term = term;
-        this.treasuryRate = treasuryRate;
+        this.tBillRate = tBillRate;
         this.bankRate = bankRate;
         this.rateDifference = rateDifference;
         this.postedBalance = postedBalance;
+        this.availableBalance = availableBalance;
     }
 
     public String getDate() {
@@ -103,12 +104,12 @@ public class RiskFreeAccount {
         this.term = term;
     }
 
-    public double getTreasuryRate() {
-        return treasuryRate;
+    public double gettBillRate() {
+        return tBillRate;
     }
 
-    public void setTreasuryRate(double treasuryRate) {
-        this.treasuryRate = treasuryRate;
+    public void settBillRate(double tBillRate) {
+        this.tBillRate = tBillRate;
     }
 
     public double getBankRate() {
@@ -133,6 +134,14 @@ public class RiskFreeAccount {
 
     public void setPostedBalance(double postedBalance) {
         this.postedBalance = postedBalance;
+    }
+
+    public double getAvailableBalance() {
+        return availableBalance;
+    }
+
+    public void setAvailableBalance(double availableBalance) {
+        this.availableBalance = availableBalance;
     }
 
     public long getId() {

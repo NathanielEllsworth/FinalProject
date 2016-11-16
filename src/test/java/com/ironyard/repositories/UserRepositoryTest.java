@@ -3,6 +3,7 @@ package com.ironyard.repositories;
 import com.ironyard.data.Permission;
 import com.ironyard.data.RiskFreeAccount;
 import com.ironyard.data.TheUser;
+import java.math.BigDecimal;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +35,7 @@ public class UserRepositoryTest {
     @Test
     public void testUserAccount() throws Exception{
         //create account
-        RiskFreeAccount savedRiskFreeAccount = riskRepo.save(new RiskFreeAccount("12-10-2014", "transfer", "EB to US Treasury Dept", 5000.00, 5000.00, "3 Months", 0.24, 0.01, 2299.99, 150000.00));
+        RiskFreeAccount savedRiskFreeAccount = riskRepo.save(new RiskFreeAccount("2016-10-03", "Transfer", "EB from Checking#2694317712", 0, 5000, "-", 0, 0, 0, 121000, 5000));
 
         //create permission
         Permission savedPermission = permRepo.save(new Permission("BUY_TREASURY_BILLS", "Ability to buy Treasury Bills with an account balance of $1,000 or more."));

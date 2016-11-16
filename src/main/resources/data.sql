@@ -1,6 +1,5 @@
 
-INSERT INTO public.the_user (id, display_name, password, username) VALUES (-1, 'Nate Ellsworth', 'password', 'nate');
-
+INSERT INTO public.the_user (id, display_name, password, username) VALUES (-1, 'nate ellsworth', 'password', 'nate');
 
 INSERT INTO public.risk_free_account (id, date, type, description, debit, credit, term, tbill_rate, bank_rate, rate_difference, invested_balance, available_balance) VALUES (-1, '2016-10-03', 'Transfer', 'EB to US Treasury Dept', 5000, 0, '3 Months', 0.25, 0.01, 2400, 126000, 0);
 INSERT INTO public.risk_free_account (id, date, type, description, debit, credit, term, tbill_rate, bank_rate, rate_difference, invested_balance, available_balance) VALUES (-2, '2016-10-03', 'Transfer', 'EB from Checking#2694317712', 0, 5000, '-', 0, 0, 0, 121000, 5000);
@@ -17,8 +16,5 @@ INSERT INTO public.risk_free_account (id, date, type, description, debit, credit
 INSERT INTO public.risk_free_account (id, date, type, description, debit, credit, term, tbill_rate, bank_rate, rate_difference, invested_balance, available_balance) VALUES (-13, '2016-06-03', 'Transfer', 'EB from Checking#2694317712', 0, 7000, '-', 0, 0, 0, 100000, 7000);
 
 
-INSERT INTO public.permission (id, description, key) VALUES (-1, 'Custodian Users', 'CUSTODIAN_ADD_USER');
-INSERT INTO public.permission (id, description, key) VALUES (-2, 'Buy treasury-bills', 'USER_BUY_TREASURY_BILLS');
 
 
-INSERT INTO public.the_user_abilities (the_user_id, approval_id) VALUES (-1, -1);
