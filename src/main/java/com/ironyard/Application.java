@@ -1,18 +1,16 @@
 package com.ironyard;
 
-//import com.ironyard.dto.TreasuryBills;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import static com.google.common.collect.Lists.newArrayList;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
@@ -25,35 +23,74 @@ public class Application {
 
     public static void main(String[] args) {SpringApplication.run(Application.class, args);}
 
+    @Bean
+    public Docket userApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("user-api")
+                .apiInfo(apiInfoUser())
+                .select()
+                .paths(regex("/rest/user.*"))
+                .build();
+    }
 
-//
-//    @Bean
-//    public Docket tBillsApi() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("treasuryBills")
-//                .apiInfo(apiInfo())
-//                .select()
-//                .paths(regex("/TreasuryBills.*"))
-//                .build();
-//    }
-//
-//    private ApiInfo apiInfo() {
-//        return new ApiInfoBuilder()
-//                .title("TreasuryBill Tracker API with Swagger, SpringBoot, JPA via Hibernate")
-//                .description("Watch your savings grow")
-//                .termsOfServiceUrl("http://theironyard.com")
-//                .contact("Nathaniel Ellsworth")
-//                .license("Apache License Version 2.1")
-//                .licenseUrl("https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE")
-//                .version("2.1")
-//                .build();
-//    }
+    @Bean
+    public Docket SavingsApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("savings-api")
+                .apiInfo(apiInfoAccounts())
+                .select()
+                .paths(regex("/rest/account.*"))
+                .build()
+                .globalOperationParameters(
+                        newArrayList(new ParameterBuilder()
+                                .name("x-authorization-key")
+                                .description("API Authorization Key")
+                                .modelRef(new ModelRef("string"))
+                                .parameterType("header")
+                                .required(true)
+                                .build()));
+    }
 
-
-
-
-
-    //Adding Swagger APIs later, want to get this running first.
-
-
+    @Bean
+    public Docket permissionApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("permission-api")
+                .apiInfo(apiInfoPermissions())
+                .select()
+                .paths(regex("/rest/permission.*"))
+                .build();
+    }
+    private ApiInfo apiInfoPermissions() {
+        return new ApiInfoBuilder()
+                .title("This is our API")
+                .description("Do all permsision stuff here :D!")
+                .termsOfServiceUrl("http://theironyard.com")
+                .contact("Nate Ellsworth")
+                .license("Apache License Version 2.0")
+                .licenseUrl("https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE")
+                .version("2.1")
+                .build();
+    }
+    private ApiInfo apiInfoUser() {
+        return new ApiInfoBuilder()
+                .title("This is our API")
+                .description("Do all USER things here")
+                .termsOfServiceUrl("http://theironyard.com")
+                .contact("Nate Ellsworth")
+                .license("Apache License Version 2.0")
+                .licenseUrl("https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE")
+                .version("2.1")
+                .build();
+    }
+    private ApiInfo apiInfoAccounts() {
+        return new ApiInfoBuilder()
+                .title("This is our API")
+                .description("Do all Account things here")
+                .termsOfServiceUrl("http://theironyard.com")
+                .contact("Nate Ellsworth")
+                .license("Apache License Version 2.0")
+                .licenseUrl("https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE")
+                .version("2.1")
+                .build();
+    }
 }

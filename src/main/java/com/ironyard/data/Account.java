@@ -1,24 +1,21 @@
 package com.ironyard.data;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-import javax.persistence.*;
 import javax.persistence.Entity;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.sql.Date;
 
 /**
- * each User's Homepage will contain their 'Risk Free' Account. Each user will only have one of these accounts.
+ * Each User needs to be able to have their own account(s)
  *
- *
- * Created by nathanielellsworth on 11/14/16.
+ * Created by nathanielellsworth on 11/4/16.
  */
 @Entity
-public class RiskFreeAccount {
+public class Account {
 
-
-    private String date;
+    private String title;
+    private Date date;
     private String type;
     private String description;
     private double debit;        // (-)
@@ -31,18 +28,20 @@ public class RiskFreeAccount {
     private double availableBalance;
 
 
-    // good ole JPA
+
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
-    public RiskFreeAccount() {
-
+    public Account() {
     }
 
-
-    public RiskFreeAccount(String date, String type, String description, double debit, double credit, String term, double tBillRate, double bankRate, double rateDifference, double postedBalance, double availableBalance) {
+    public Account(String title, Date date, String type, String description, double debit, double credit, String term, double tBillRate, double bankRate, double rateDifference, double postedBalance, double availableBalance) {
+        this.title = title;
         this.date = date;
         this.type = type;
         this.description = description;
@@ -56,11 +55,19 @@ public class RiskFreeAccount {
         this.availableBalance = availableBalance;
     }
 
-    public String getDate() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -151,4 +158,5 @@ public class RiskFreeAccount {
     public void setId(long id) {
         this.id = id;
     }
+
 }

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: nathanielellsworth
-  Date: 11/14/16
-  Time: 5:23 PM
+  Date: 11/24/16
+  Time: 3:34 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,6 +13,7 @@
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,66 +62,93 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="/mvc/secure/account/savings">Home</a></li>
+                <li role="presentation"><a href="/mvc/secure/account/savings">Home</a></li>
                 <li role="presentation"><a href="/mvc/secure/account/all">Accounts</a></li>
                 <c:if test="${user_loggedin_perms.containsKey('ADMIN_ADD_USER')}">
-                    <li role="presentation"><a href="/mvc/secure/admin/users">Users</a></li>
+                    <li role="presentation" class="active"><a href="/mvc/secure/admin/users">Users</a></li>
                 </c:if>
                 <li role="presentation"><a href="/mvc/open/logout">Logout</a></li>
             </ul>
         </nav>
-        <h3 class="text-muted">My Investment and Savings Account</h3>
+        <h3 class="text-muted">User Administration</h3>
     </div>
 
 
     <div class="row marketing">
         <div class="col-lg-6">
-            <h4>Account History</h4>
+            <h4>Save User</h4>
+            <c:if test="${error_message != null}">
+                <div class="alert alert-danger"><c:out value="${error_message}"/></div>
+            </c:if>
+
+            <form method="post" action="/mvc/secure/admin/user/save">
+                <table class="table">
+                    <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
+                    <tr>
+                        <td>Display Name:</td>
+                        <td><input type="text" name="displayname" value="<c:out value="${displayname}"/>"></td>
+                    </tr>
+                    <tr>
+                        <td>Login Name:</td>
+                        <td><input type="text" name="username" value="<c:out value="${username}"/>"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" name="password" value="<c:out value="${password}"/>"></td>
+                    </tr>
+                    <tr>
+                        <td>Password (Repeat):</td>
+                        <td><input type="password" name="password2" value="<c:out value="${password}"/>"></td>
+                    </tr>
+                    <tr>
+                        <td>Permissions:</td>
+                        <td>
+                            <c:forEach items="${permissions}" var="aPerm">
+
+                                <div>
+                                    <input type="checkbox" name="permissions"
+                                    <c:if test="${edit_user_perms.containsKey(aPerm.key)}">
+                                           checked
+                                    </c:if>
+                                           value="<c:out value="${aPerm.id}"/>">
+
+                                    <c:out value="${aPerm.description}"/>
+                                </div>
+                            </c:forEach>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <input type="submit" name="Save"/>
+                </div>
+            </form>
+            <p></p>
+            <h4>All System Users</h4>
 
             <p/>
-            <div class="pull-left">
-                <c:if test="${account_pager.previous}">
-                    <a class="btn btn-default btn-sm"
-                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
-                </c:if>
-            </div>
-            <div class="pull-right">
-                <c:if test="${account_pager.next}">
-                    <a class="btn btn-default btn-sm"
-                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
-                </c:if>
-            </div>
+
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Debit (-)</th>
-                    <th>Credit (+)</th>
-                    <th>Term</th>
-                    <th>Treasury Bill Rate of Return</th>
-                    <th>Bank Rate of Return</th>
-                    <th>Rate of Return Difference</th>
-                    <th>Posted Balance</th>
-                    <th>Available Balance</th>
+                    <th>Action</th>
+                    <th>Username</th>
+                    <th>DisplayName</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <c:forEach items="${all_transactions}" var="aAccount">
+                <c:forEach items="${users}" var="aUser">
                     <tr>
-                        <td><c:out value="${aAccount.date}"/></td>
-                        <td><c:out value="${aAccount.type}"/></td>
-                        <td><c:out value="${aAccount.description}"/></td>
-                        <td><c:out value="${aAccount.debit}"/></td>
-                        <td><c:out value="${aAccount.credit}"/></td>
-                        <td><c:out value="${aAccount.term}"/></td>
-                        <td><c:out value="${aAccount.tBillRate}"/></td>
-                        <td><c:out value="${aAccount.bankRate}"/></td>
-                        <td><c:out value="${aAccount.rateDifference}"/></td>
-                        <td><c:out value="${aAccount.postedBalance}"/></td>
-                        <td><c:out value="${aAccount.availableBalance}"/></td>
+                        <td>
+                            <div>
+                                <a href="/mvc/secure/admin/user/delete?id=<c:out value="${aUser.id}"/>">DELETE</a>
+                            </div>
+                            <div>
+                                <a href="/mvc/secure/admin/user/edit?id=<c:out value="${aUser.id}"/>">EDIT</a>
+                            </div>
+                        </td>
+                        <td><c:out value="${aUser.username}"/></td>
+                        <td><c:out value="${aUser.displayName}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -131,10 +159,6 @@
     </div>
 
     <footer class="footer">
-        <div class="pull-center">
-            Total Pages: <c:out value="${account_pager.totalPages}"/>
-            Total Accounts: <c:out value="${account_pager.totalAccounts}"/>
-        </div>
         <p>&copy; 2016 Company, Inc.</p>
     </footer>
 
@@ -143,3 +167,4 @@
 
 </body>
 </html>
+

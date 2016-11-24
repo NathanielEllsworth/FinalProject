@@ -1,6 +1,5 @@
 package com.ironyard.security;
 
-
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +13,13 @@ public class FilterRegistrations {
     public FilterRegistrationBean mvcSecurityFilter(){
         FilterRegistrationBean registration = new FilterRegistrationBean(new MvcSecurityFilter());
         registration.addUrlPatterns("/mvc/secure/*");
+        return registration;
+    }
+
+    @Bean
+    public FilterRegistrationBean restApiFilter() {
+        FilterRegistrationBean registration = new FilterRegistrationBean(new RestSecurityFilter());
+        registration.addUrlPatterns("/rest/*");
         return registration;
     }
 
