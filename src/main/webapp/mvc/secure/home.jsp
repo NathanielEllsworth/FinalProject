@@ -75,68 +75,109 @@
 
     <div class="row marketing">
         <div class="col-lg-6">
-            <h4>Account History</h4>
 
             <p/>
-            <div class="pull-left">
-                <c:if test="${account_pager.previous}">
-                    <a class="btn btn-default btn-sm"
-                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
-                </c:if>
-            </div>
-            <div class="pull-right">
-                <c:if test="${account_pager.next}">
-                    <a class="btn btn-default btn-sm"
-                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
-                </c:if>
-            </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Debit (-)</th>
-                    <th>Credit (+)</th>
-                    <th>Term</th>
-                    <th>Treasury Bill Rate of Return</th>
-                    <th>Bank Rate of Return</th>
-                    <th>Rate of Return Difference</th>
-                    <th>Posted Balance</th>
-                    <th>Available Balance</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <c:forEach items="${all_transactions}" var="aAccount">
-                    <tr>
-                        <td><c:out value="${aAccount.date}"/></td>
-                        <td><c:out value="${aAccount.type}"/></td>
-                        <td><c:out value="${aAccount.description}"/></td>
-                        <td><c:out value="${aAccount.debit}"/></td>
-                        <td><c:out value="${aAccount.credit}"/></td>
-                        <td><c:out value="${aAccount.term}"/></td>
-                        <td><c:out value="${aAccount.tBillRate}"/></td>
-                        <td><c:out value="${aAccount.bankRate}"/></td>
-                        <td><c:out value="${aAccount.rateDifference}"/></td>
-                        <td><c:out value="${aAccount.postedBalance}"/></td>
-                        <td><c:out value="${aAccount.availableBalance}"/></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-
+            <p/>
+            <p/>
+            <div
+            <form action="/mvc/secure/account/tbills" method="post">
+                <select name='dropdown' onchange='this.form.submit()'>
+                    <c:forEach items="${date}" var="aDate">
+                        <option value="<c:out value="${aDate.issueDate}"/>"><c:out value="${aDate.issueDate}"/></option>
+                    </c:forEach>
+                </select>
+                <noscript><input type="submit" value="Submit"></noscript>
+            </form>
         </div>
+
+        <table class="table">
+            <tr>
+                <th>Selected Date</th>
+                <th>Length of Time</th>
+                <th>Return</th>
+                <th>Return Increase</th>
+                <th><a href="www.treasurydirect.gov" class="btn btn-info" role="button">Details</a></th>
+            </tr>
+            <tbody>
+            <c:forEach items="${tbills}" var="aTbills">
+                <tr>
+                    <td><c:out value="${aTbills.securityTerm}"/></td>
+                    <td><c:out value="${aTbills.highInvestmentRate}"/></td>
+                    <td><c:out value="${aTbills.value}"/></td>
+                    <td><a href="www.treasurydirect.gov" class="btn btn-info" role="button">Details</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<div class="row marketing">
+    <div class="col-lg-6">
+        <h4>Account History</h4>
+
+        <p/>
+        <div class="pull-left">
+            <c:if test="${account_pager.previous}">
+                <a class="btn btn-default btn-sm"
+                   href="/mvc/secure/account/all?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
+            </c:if>
+        </div>
+        <div class="pull-right">
+            <c:if test="${account_pager.next}">
+                <a class="btn btn-default btn-sm"
+                   href="/mvc/secure/account/all?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
+            </c:if>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Debit (-)</th>
+                <th>Credit (+)</th>
+                <th>Term</th>
+                <th>Treasury Bill Rate of Return</th>
+                <th>Bank Rate of Return</th>
+                <th>Rate of Return Difference</th>
+                <th>Posted Balance</th>
+                <th>Available Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <c:forEach items="${all_transactions}" var="aAccount">
+                <tr>
+                    <td><c:out value="${aAccount.date}"/></td>
+                    <td><c:out value="${aAccount.type}"/></td>
+                    <td><c:out value="${aAccount.description}"/></td>
+                    <td><c:out value="${aAccount.debit}"/></td>
+                    <td><c:out value="${aAccount.credit}"/></td>
+                    <td><c:out value="${aAccount.term}"/></td>
+                    <td><c:out value="${aAccount.tBillRate}"/></td>
+                    <td><c:out value="${aAccount.bankRate}"/></td>
+                    <td><c:out value="${aAccount.rateDifference}"/></td>
+                    <td><c:out value="${aAccount.postedBalance}"/></td>
+                    <td><c:out value="${aAccount.availableBalance}"/></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
 
     </div>
 
-    <footer class="footer">
-        <div class="pull-center">
-            Total Pages: <c:out value="${account_pager.totalPages}"/>
-            Total Accounts: <c:out value="${account_pager.totalAccounts}"/>
-        </div>
-        <p>&copy; 2016 Company, Inc.</p>
-    </footer>
+</div>
+
+<footer class="footer">
+    <div class="pull-center">
+        Total Pages: <c:out value="${account_pager.totalPages}"/>
+        Total Accounts: <c:out value="${account_pager.totalAccounts}"/>
+    </div>
+    <p>&copy; 2016 Company, Inc.</p>
+</footer>
 
 </div> <!-- /container -->
 
