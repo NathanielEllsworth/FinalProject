@@ -28,15 +28,18 @@ public class MvcTheUserController {
     AccountRepository accountRepository = null;
 
     @RequestMapping(value = "savings/delete", method = RequestMethod.GET)
-    public String deleteFavorite(@RequestParam("id") Long id, HttpServletRequest request){
-
+    public String deleteSavings(@RequestParam("id") Long id, HttpServletRequest request){
+        // get current logged in user, need to case (TheUser) to proper type
         TheUser user = (TheUser)request.getSession().getAttribute("user");
 
-
+        // refetch user from db
         TheUser fetchedUser = userRepository.findOne(user.getId());
+
+        // find this account id in user favorites and remove it
         Account accountToRemove = null;
         for(Account tmp: fetchedUser.getOtherAccounts()){
             if(tmp.getId() == id){
+                // this is the account to remove
                 accountToRemove = tmp;
             }
         }
@@ -45,14 +48,17 @@ public class MvcTheUserController {
             fetchedUser.getOtherAccounts().remove(accountToRemove);
         }
         userRepository.save(fetchedUser);
-
+        // send them to the home page
         return "redirect:/mvc/secure/account/savings";
     }
 
+
     @RequestMapping(value = "savings/add", method = RequestMethod.GET)
     public String addSavings(@RequestParam("id") Long id, HttpServletRequest request){
+        // get current logged in user, need to case (TheUser) to proper type
         TheUser user = (TheUser)request.getSession().getAttribute("user");
 
+        // refetch user from db
         TheUser fetchedUser = userRepository.findOne(user.getId());
 
         Account accountToAddToSavings = accountRepository.findOne(id);
@@ -63,25 +69,7 @@ public class MvcTheUserController {
         fetchedUser.getOtherAccounts().add(accountToAddToSavings);
 
         userRepository.save(fetchedUser);
-
+        // send them to the home page
         return "redirect:/mvc/secure/account/all";
     }
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,17 +10,16 @@ import org.springframework.context.annotation.Configuration;
 public class FilterRegistrations {
 
     @Bean
-    public FilterRegistrationBean mvcSecurityFilter(){
-        FilterRegistrationBean registration = new FilterRegistrationBean(new MvcSecurityFilter());
-        registration.addUrlPatterns("/mvc/secure/*");
-        return registration;
-    }
-
-    @Bean
     public FilterRegistrationBean restApiFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean(new RestSecurityFilter());
         registration.addUrlPatterns("/rest/*");
         return registration;
     }
 
+    @Bean
+    public FilterRegistrationBean mvcSecutiryFilter() {
+        FilterRegistrationBean registration = new FilterRegistrationBean(new MvcSecurityFilter());
+        registration.addUrlPatterns("/mvc/secure/*");
+        return registration;
+    }
 }

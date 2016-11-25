@@ -13,31 +13,26 @@ import java.io.IOException;
 public class MvcSecurityFilter implements javax.servlet.Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException{
-
-    }
-
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-                         FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest req = ((HttpServletRequest) servletRequest);
-        HttpServletResponse resp = ((HttpServletResponse) servletResponse);
-        // check session
+    public void doFilter(ServletRequest request, ServletResponse response,
+                         FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest req = ((HttpServletRequest) request);
+        HttpServletResponse resp = ((HttpServletResponse) response);
+        // check sessio
         TheUser usr = (TheUser) req.getSession().getAttribute("user");
         boolean authorized = (usr != null);
 
-        if(authorized){
-            filterChain.doFilter(servletRequest, servletResponse);
+        if(authorized) {
+            chain.doFilter(request, response);
         }else{
             resp.sendRedirect("/mvc/open/login.jsp");
         }
     }
 
-
     @Override
-    public void destroy(){
-
+    public void destroy() {
     }
 
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 }

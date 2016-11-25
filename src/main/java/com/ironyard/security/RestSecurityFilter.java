@@ -21,7 +21,7 @@ public class RestSecurityFilter implements javax.servlet.Filter{
         boolean authorized = false;
         String key = req.getHeader("x-authorization-key");
         if(key != null){
-            authorized = Encryption.isValidKey(key);
+            authorized = SecurityUtils.isValidKey(key);
         }
 
         if(authorized){

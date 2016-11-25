@@ -31,28 +31,23 @@ public class MvcLoginController {
     public String login(@RequestParam(value = "password", required = false) String password,
                         @RequestParam(value = "username", required = false) String username,
                         HttpServletRequest request) {
-        log.info("Login attempt by:" + username);
+        log.info("Login attempt by:"+username);
         String destination = "open/login";
         TheUser found = userRepository.findByUsernameAndPassword(username, password);
-        if (found != null) {
-            request.getSession().setAttribute("user", found);
-
-
-            // add permissions to session (unlike a Joint Account, a Custodial Account allows one party to have
-            // more control over the account than the other, (e.g. Parent over child)
-
-
+        if(found != null){
+            request.getSession().setAttribute("user",found);
+            // add permissions to session as well
             HashMap<String, String> permsForThisUser = new HashMap<>();
-            for (Permission p : found.getAbilities()) {
+            for(Permission p: found.getAbilities()){
                 permsForThisUser.put(p.getKey(), p.getKey());
             }
             request.getSession().setAttribute("user_loggedin_perms", permsForThisUser);
 
-            // on a successful login they are sent to the personal accounts controller to fetch their personal accounts
+            // on success we send them to the favs controller to fetch fav movies
             destination = "redirect:/mvc/secure/account/savings";
-            log.info("found user:" + found.getId());
+            log.info("found user:"+found.getId());
         }
-        log.info("Login attempt result:" + destination);
+        log.info("Login attempt result:"+destination);
         return destination;
     }
 
@@ -60,34 +55,12 @@ public class MvcLoginController {
     public String logout(HttpServletRequest request) {
         String destination = "/open/login";
         TheUser found = (TheUser) request.getSession().getAttribute("user");
-        if (found != null) {
+        if(found != null) {
             log.info("Logging out user with id:" + found.getId());
         }
         request.getSession().invalidate();
         return destination;
     }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -81,7 +81,7 @@
                 <div class="alert alert-danger"><c:out value="${error_message}"/></div>
             </c:if>
 
-            <form method="post" action="/mvc/secure/admin/user/save">
+            <form method="post" action="/mvc/secure/custodian/user/save">
                 <table class="table">
                     <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
                     <tr>

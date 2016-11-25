@@ -25,9 +25,8 @@ import java.util.Set;
  * Created by nathanielellsworth on 11/5/16.
  */
 @Controller
-@RequestMapping(path = "/mvc/secure/accounts")
+@RequestMapping(path = "/mvc/secure/account")
 public class MvcAccountController {
-
 
     @Autowired
     TheUserRepository userRepository = null;
@@ -35,7 +34,22 @@ public class MvcAccountController {
     @Autowired
     AccountRepository accountRepository = null;
 
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public String OtherAccounts(Model model, HttpServletRequest request){
+        // get current logged in user, need to case (TheUser) to proper type
+        TheUser user = (TheUser)request.getSession().getAttribute("user");
 
+        Long usrId = user.getId();
+
+        // get users savings
+        Set<Account> all = userRepository.findOne(usrId).getOtherAccounts();
+
+
+        model.addAttribute("all", all);
+
+        // send them to the home page
+        return "/secure/list_all_accounts";
+    }
 
 
     @RequestMapping(value = "savings", method = RequestMethod.GET)
@@ -58,24 +72,4 @@ public class MvcAccountController {
         // send them to the home page
         return "/secure/home";
     }
-
-
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public String OtherAccounts(Model model, HttpServletRequest request){
-        // get current logged in user, need to case (TheUser) to proper type
-        TheUser user = (TheUser)request.getSession().getAttribute("user");
-
-        Long usrId = user.getId();
-
-        // get users savings
-        Set<Account> all = userRepository.findOne(usrId).getOtherAccounts();
-
-
-        model.addAttribute("all", all);
-
-        // send them to the home page
-        return "/secure/list_all_accounts";
-    }
-
-
 }
