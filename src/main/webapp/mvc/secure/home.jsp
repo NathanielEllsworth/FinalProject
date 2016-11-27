@@ -148,6 +148,12 @@
                 <th>Available Balance</th>
             </tr>
             </thead>
+            <style>
+                .greentext {
+                    color: green;
+                    font-weight: bold;
+                }
+            </style>
             <tbody>
 
             <c:forEach items="${all_transactions}" var="aAccount">
@@ -160,7 +166,7 @@
                     <td><c:out value="${aAccount.term}"/></td>
                     <td><c:out value="${aAccount.tBillRate}%"/></td>
                     <td><c:out value="${aAccount.bankRate}%"/></td>
-                    <td><c:out value="+${aAccount.rateDifference}%"/></td>
+                    <td class="greentext"><c:out  value="+${aAccount.rateDifference}%"/></td>
                     <td><c:out value="${aAccount.postedBalance}"/></td>
                     <td><c:out value="${aAccount.availableBalance}"/></td>
                 </tr>
