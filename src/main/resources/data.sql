@@ -7,10 +7,10 @@ INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debi
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-2, 5000, 0, 5000, '2016-10-03', 0, 'EB from Checking #2694317712', 0, 0, 0, '-', 'Savings', 'Transfer');
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-3, 0, 0.005, 0, '2016-08-15', 10000, 'EB to US Treasury Dept', 121000, 10700, 0.54, '6 Months', 'Savings', 'Transfer');
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-4, 10000, 0, 10000, '2016-08-15', 0, 'EB from Checking #2694317712', 0, 0, 0, '-', 'Savings', 'Transfer');
-INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-5, 0, 0.00083, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 111000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
-INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-6, 0, 0.00083, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 110000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
-INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-7, 0, 0.00083, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 109000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
-INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-8, 0, 0.00083, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 108000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
+INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-5, 0, 0.001, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 111000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
+INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-6, 0, 0.001, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 110000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
+INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-7, 0, 0.001, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 109000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
+INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-8, 0, 0.001, 0, '2016-07-04', 1000, 'EB to US Treasury Dept', 108000, 33513.44, 0.28, '1 Month', 'Savings', 'Transfer');
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-9, 4000, 0, 4000, '2016-07-04', 0, 'EB from Checking #2694317712', 0, 0, 0, '-', 'Savings', 'Transfer');
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-10, 0, 0.0025, 0, '2016-06-07', 1000, 'EB to US Treasury Dept', 107000, 10300, 0.26, '3 Months', 'Savings', 'Transfer');
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-11, 0, 0.0025, 0, '2016-06-07', 1000, 'EB to US Treasury Dept', 106000, 10300, 0.26, '3 Months', 'Savings', 'Transfer');
@@ -19,7 +19,7 @@ INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debi
 
 
 INSERT INTO public.permission (id, description, key) VALUES (-1, 'Admin Users', 'ADMIN_ADD_USER');
-INSERT INTO public.permission (id, description, key) VALUES (-2, 'Allow TBill Transactions', 'USER_BUY_TBILLS');
+INSERT INTO public.permission (id, description, key) VALUES (-2, 'Allow Treasury Bill Purchases', 'USER_BUY_TBILLS');
 
 
 INSERT INTO public.the_user_abilities (the_user_id, abilities_id) VALUES (-1, -1);

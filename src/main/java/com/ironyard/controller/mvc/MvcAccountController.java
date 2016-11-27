@@ -3,6 +3,7 @@ package com.ironyard.controller.mvc;
 import com.ironyard.data.Account;
 import com.ironyard.data.TheUser;
 import com.ironyard.dto.AccountPager;
+import com.ironyard.dto.TreasuryBills;
 import com.ironyard.repositories.AccountRepository;
 import com.ironyard.repositories.TheUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
@@ -60,7 +63,7 @@ public class MvcAccountController {
             page = 0;
         }
         Sort s = new Sort(Sort.Direction.DESC, "date");
-        PageRequest pr = new PageRequest(page, 13, s);
+        PageRequest pr = new PageRequest(page, 10, s);
         Page<Account> aPageOfTransactions =  accountRepository.findAll(pr);
 
         AccountPager ap = new AccountPager(page ,aPageOfTransactions);
@@ -70,6 +73,11 @@ public class MvcAccountController {
         model.addAttribute("account_pager", ap);
 
         // send them to the home page
+        RestTemplate restTemplate = new RestTemplate();
+        TreasuryBills[] tbills = restTemplate.getForObject("http://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill" , TreasuryBills[].class);
+        System.out.println("size of tbills" + tbills.length);
+        model.addAttribute("aDate", tbills);
+
         return "/secure/home";
     }
 }

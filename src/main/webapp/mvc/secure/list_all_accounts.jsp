@@ -76,11 +76,56 @@
      -->
 
 
-    <div class="row marketing">
-        <div class="col-lg-6">
+
+
+            <div class="row marketing">
+                <div class="col-lg-6">
+                    <h4>Add Account</h4>
+
+
+                    <form method="post" action="/mvc/secure/custodian/user/save">
+                        <table class="table">
+                            <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
+                            <tr>
+                                <td>Account Type:</td>
+                                <td><input type="text" name="Type" value="<c:out value="${displayname}"/>"></td>
+                            </tr>
+                            <tr>
+                                <td>Account Rate of Return:</td>
+                                <td><input type="text" name="Rate of Return" value="<c:out value="${username}"/>"></td>
+                            </tr>
+                            <tr>
+                                <td>Available Balance:</td>
+                                <td><input type="text" name="Available Balance" value="<c:out value="${username}"/>"></td>
+                            </tr>
 
 
 
+
+
+                            <p/>
+
+                            <table class="table">
+                                <thead>
+
+                                </thead>
+                                <tbody>
+
+                                <c:forEach items="${users}" var="aUser">
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <a href="/mvc/secure/admin/user/delete?id=<c:out value="${aUser.id}"/>">DELETE</a>
+                                            </div>
+                                            <div>
+                                                <a href="/mvc/secure/admin/user/edit?id=<c:out value="${aUser.id}"/>">EDIT</a>
+                                            </div>
+                                        </td>
+                                        <td><c:out value="${aUser.username}"/></td>
+                                        <td><c:out value="${aUser.displayName}"/></td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
 
 
 

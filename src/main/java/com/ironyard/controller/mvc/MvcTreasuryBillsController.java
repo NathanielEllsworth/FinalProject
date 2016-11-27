@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping(path = "/mvc/secure/account/savings")
 public class MvcTreasuryBillsController {
 
-    @RequestMapping(value = "/dates/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/tbills", method = RequestMethod.GET)
     public String list(Map<String, Object> model) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -31,12 +31,12 @@ public class MvcTreasuryBillsController {
 
         model.put("tbills", tbills);
         //Back to home
-        return "redirect:/mvc/secure/account/savings";
+        return "/secure/home";
 
 
     }
 
-    @RequestMapping(value = "/dates/all/tbills", method = RequestMethod.GET)
+    @RequestMapping(value = "/tbills/all", method = RequestMethod.GET)
     public String list(Map<String, Object> model, @RequestParam(value = "dropdown", required = false) String aDate) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -53,7 +53,7 @@ public class MvcTreasuryBillsController {
 
         model.put("tbills", tbills);
         //Back to home
-        return "redirect:/mvc/secure/account/savings";
+        return "/secure/home";
 
 
     }

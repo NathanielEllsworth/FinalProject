@@ -18,7 +18,7 @@ import java.util.HashSet;
  * Created by nathanielellsworth on 11/4/16.
  */
 @Controller
-@RequestMapping(path = "/mvc/secure/user")
+@RequestMapping(path = "/mvc/secure/account/all")
 public class MvcTheUserController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class MvcTheUserController {
     @Autowired
     AccountRepository accountRepository = null;
 
-    @RequestMapping(value = "savings/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "account/delete", method = RequestMethod.GET)
     public String deleteSavings(@RequestParam("id") Long id, HttpServletRequest request){
         // get current logged in user, need to case (TheUser) to proper type
         TheUser user = (TheUser)request.getSession().getAttribute("user");
@@ -49,12 +49,12 @@ public class MvcTheUserController {
         }
         userRepository.save(fetchedUser);
         // send them to the home page
-        return "redirect:/mvc/secure/account/savings";
+        return "redirect:/mvc/secure/account/savings/all";
     }
 
 
-    @RequestMapping(value = "savings/add", method = RequestMethod.GET)
-    public String addSavings(@RequestParam("id") Long id, HttpServletRequest request){
+    @RequestMapping(value = "account/add", method = RequestMethod.GET)
+    public String addAccount(@RequestParam("id") Long id, HttpServletRequest request){
         // get current logged in user, need to case (TheUser) to proper type
         TheUser user = (TheUser)request.getSession().getAttribute("user");
 
@@ -70,6 +70,6 @@ public class MvcTheUserController {
 
         userRepository.save(fetchedUser);
         // send them to the home page
-        return "redirect:/mvc/secure/account/all";
+        return "redirect:/mvc/secure/account/savings/all";
     }
 }

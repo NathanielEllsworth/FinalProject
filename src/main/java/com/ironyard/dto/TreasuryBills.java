@@ -1,5 +1,6 @@
 package com.ironyard.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -12,17 +13,17 @@ public class TreasuryBills {
     @JsonProperty(value = "securityTerm")
     private String securityTerm;
 
-    @JsonProperty(value = "cusip")
-    private String cusip;
 
     @JsonProperty(value = "issueDate")
-    private String issueDate;
+    private String issueDate;                   // MM/dd/yyyy
 
     @JsonProperty(value = "maturityDate")
     private String maturityDate;
 
     @JsonProperty(value = "highInvestmentRate")         //rate of return
     private String highInvestmentRate;
+
+
 
 
     public String getSecurityTerm() {
@@ -33,16 +34,8 @@ public class TreasuryBills {
         this.securityTerm = securityTerm;
     }
 
-    public String getCusip() {
-        return cusip;
-    }
-
-    public void setCusip(String cusip) {
-        this.cusip = cusip;
-    }
-
     public String getIssueDate() {
-        return issueDate;
+        return issueDate.replaceAll("T00:00:00","");
     }
 
     public void setIssueDate(String issueDate) {
@@ -50,16 +43,14 @@ public class TreasuryBills {
     }
 
     public String getMaturityDate() {
-        return maturityDate;
+        return maturityDate.replaceAll("T00:00:00","");
     }
 
     public void setMaturityDate(String maturityDate) {
         this.maturityDate = maturityDate;
     }
 
-    public String getHighInvestmentRate() {
-        return highInvestmentRate;
-    }
+    public String getHighInvestmentRate() {return highInvestmentRate.replaceAll("000","%");}
 
     public void setHighInvestmentRate(String highInvestmentRate) {
         this.highInvestmentRate = highInvestmentRate;

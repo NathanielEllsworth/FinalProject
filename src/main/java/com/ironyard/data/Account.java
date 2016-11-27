@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.sql.Date;
 
 /**
@@ -28,9 +30,9 @@ public class Account {
     private double availableBalance;
 
 
+    BigDecimal bank = new BigDecimal(bankRate, MathContext.DECIMAL64);
 
-
-
+    // in test BigDecimal.valueOf(0.00083);
 
 
     @Id
@@ -159,4 +161,11 @@ public class Account {
         this.id = id;
     }
 
+    public BigDecimal getBank() {
+        return bank;
+    }
+
+    public void setBank(BigDecimal bank) {
+        this.bank = bank;
+    }
 }

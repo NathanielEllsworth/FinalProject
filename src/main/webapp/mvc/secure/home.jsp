@@ -71,40 +71,41 @@
         </nav>
         <h3 class="text-muted">My Investment and Savings Account</h3>
     </div>
-
-
     <div class="row marketing">
-        <div class="col-lg-6">
+        <div class="col-lg-9">
+            <h4>View Current Issued Treasury Bills</h4>
 
             <p/>
             <p/>
             <p/>
-            <div
-            <form action="/mvc/secure/account/tbills" method="post">
+            <table class="table">
+                <tr>
+                    <th>
+            <div/>
+            <form action="/mvc/secure/account/savings/tbills" method="get">
                 <select name='dropdown' onchange='this.form.submit()'>
-                    <c:forEach items="${date}" var="aDate">
-                        <option value="<c:out value="${aDate.issueDate}"/>"><c:out value="${aDate.issueDate}"/></option>
+                    <c:forEach items="${aDate}" var="date">
+                        <option value="<c:out value="${date.issueDate}"/>"><c:out value="${date.issueDate}"/></option>
                     </c:forEach>
                 </select>
                 <noscript><input type="submit" value="Submit"></noscript>
             </form>
         </div>
+        </th>
 
-        <table class="table">
-            <tr>
-                <th>Selected Date</th>
-                <th>Length of Time</th>
-                <th>Return</th>
-                <th>Return Increase</th>
-                <th><a href="www.treasurydirect.gov" class="btn btn-info" role="button">Details</a></th>
+
+
+                <th>Security Term</th>
+                <th>(0.01% Annual Bank return)<br />
+                          Current Return %</th>
+                <th><a href='http://www.treasurydirect.gov/indiv/TDTour/open_account.htm' type="submit" class="btn btn-info" role="button">Open a Treasury Account</a></th>
             </tr>
             <tbody>
             <c:forEach items="${tbills}" var="aTbills">
                 <tr>
+                    <td><c:out value="${aTbills.issueDate}"/></td>
                     <td><c:out value="${aTbills.securityTerm}"/></td>
                     <td><c:out value="${aTbills.highInvestmentRate}"/></td>
-                    <td><c:out value="${aTbills.value}"/></td>
-                    <td><a href="www.treasurydirect.gov" class="btn btn-info" role="button">Details</a></td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -115,20 +116,20 @@
 
 
 <div class="row marketing">
-    <div class="col-lg-6">
-        <h4>Account History</h4>
+    <div class="col-lg-16">
+        <h4>Transaction History</h4>
 
         <p/>
         <div class="pull-left">
             <c:if test="${account_pager.previous}">
                 <a class="btn btn-default btn-sm"
-                   href="/mvc/secure/account/all?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
+                   href="/mvc/secure/account/savings?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
             </c:if>
         </div>
         <div class="pull-right">
             <c:if test="${account_pager.next}">
                 <a class="btn btn-default btn-sm"
-                   href="/mvc/secure/account/all?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
+                   href="/mvc/secure/account/savings?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
             </c:if>
         </div>
         <table class="table">
@@ -140,9 +141,9 @@
                 <th>Debit (-)</th>
                 <th>Credit (+)</th>
                 <th>Term</th>
-                <th>Treasury Bill Rate of Return</th>
-                <th>Bank Rate of Return</th>
-                <th>Rate of Return Difference</th>
+                <th>Return</th>
+                <th>Bank Return</th>
+                <th>Return increase</th>
                 <th>Posted Balance</th>
                 <th>Available Balance</th>
             </tr>
@@ -157,9 +158,9 @@
                     <td><c:out value="${aAccount.debit}"/></td>
                     <td><c:out value="${aAccount.credit}"/></td>
                     <td><c:out value="${aAccount.term}"/></td>
-                    <td><c:out value="${aAccount.tBillRate}"/></td>
-                    <td><c:out value="${aAccount.bankRate}"/></td>
-                    <td><c:out value="${aAccount.rateDifference}"/></td>
+                    <td><c:out value="${aAccount.tBillRate}%"/></td>
+                    <td><c:out value="${aAccount.bankRate}%"/></td>
+                    <td><c:out value="+${aAccount.rateDifference}%"/></td>
                     <td><c:out value="${aAccount.postedBalance}"/></td>
                     <td><c:out value="${aAccount.availableBalance}"/></td>
                 </tr>
@@ -173,8 +174,8 @@
 
 <footer class="footer">
     <div class="pull-center">
-        Total Pages: <c:out value="${account_pager.totalPages}"/>
-        Total Accounts: <c:out value="${account_pager.totalAccounts}"/>
+        Total Pages: <c:out value="${account_pager.currentPage}"/>
+        Total Accounts: <c:out value="${account_pager.totalPages}"/>
     </div>
     <p>&copy; 2016 Company, Inc.</p>
 </footer>
