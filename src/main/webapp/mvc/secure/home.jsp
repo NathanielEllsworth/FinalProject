@@ -162,18 +162,18 @@
         <div class="alert alert-danger"><c:out value="${error_message}"/></div>
     </c:if>
 
-    <form method="post" action="/mvc/secure/account/savings/add">
+    <form method="post" action="/mvc/secure/user/account/savings/add">
         <table class="table">
                 <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
 
 
-            <tr><td><input type="text" name="date" placeholder="Date:  yyyy/mm/dd "></td>
+            <tr><td><input type="date" name="date" placeholder="Date:  yyyy/mm/dd "></td>
                 <td><input type="text" name="type" placeholder="Type: Transfer"></td>
                 <td><input type="text" name="description" placeholder="Description "></td>
                 <td><input type="text" name="debit" placeholder="Debit (-) "></td>
                 <td><input type="text" name="credit" placeholder="Credit (+) "></td></tr>
             <tr><td><input type="text" name="term" placeholder="Term:  3 Months "></td>
-                <td><input type="text" name="tBillReturn" placeholder="Treasury Return "></td>
+                <td><input type="text" name="tBillReturn" placeholder="Return "></td>
                 <td><input type="text" name="bankReturn" placeholder="Bank Return: 0.01 "></td>
                 <td><input type="text" name="returnIncrease" placeholder="Return Increase "></td>
                 <td><input type="text" name="postedBalance" placeholder="Posted Balance "></td>

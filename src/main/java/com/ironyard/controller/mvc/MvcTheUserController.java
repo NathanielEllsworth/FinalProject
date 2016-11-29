@@ -5,12 +5,16 @@ import com.ironyard.data.TheUser;
 import com.ironyard.repositories.AccountRepository;
 import com.ironyard.repositories.TheUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
 /**
@@ -54,8 +58,14 @@ public class MvcTheUserController {
         return "redirect:/mvc/secure/account/savings";
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
 
-    @RequestMapping(value = "account/savings/add", method = RequestMethod.GET)
+    @RequestMapping(value = "account/savings/add", method = RequestMethod.POST)
     public String addTransaction(@RequestParam("date") Date date,
                                  @RequestParam("type") String type,
                                  @RequestParam("description") String description,
@@ -66,7 +76,7 @@ public class MvcTheUserController {
                                  @RequestParam("bankReturn") double bankReturn,
                                  @RequestParam("returnIncrease") double returnIncrease,
                                  @RequestParam("postedBalance") double postedBalance,
-                                 @RequestParam("availableBalance") double availableBalance, HttpServletRequest request) {
+                                 @RequestParam("availableBalance") double availableBalance){
 
 
         Account tmpA = new Account();
