@@ -16,6 +16,7 @@ import java.sql.Date;
 @Entity
 public class Account {
 
+    private long userId;
     private String title;
     private Date date;
     private String type;

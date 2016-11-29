@@ -19,7 +19,7 @@ public class TheUser {
 
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Account> otherAccounts;
 
     @ManyToMany(fetch = FetchType.EAGER)
