@@ -132,9 +132,7 @@
                     <td><c:out value="${aAccount.postedBalance}"/></td>
                     <td><c:out value="${aAccount.availableBalance}"/></td>
                     <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
-                    <td><a href="/mvc/secure/user/account/savings/delete?id=<c:out value="${aAccount.id}"/>">(x) </a>
-                        <a href="/mvc/secure/user/account/savings/add?id=<c:out value="${aAccount.id}"/>">(+) </a>
-                        <a href="/mvc/secure/user/account/savings/update?id=<c:out value="${aAccount.id}"/>"> Update </a></td>
+                    <td><a href="/mvc/secure/user/account/savings/delete?id=<c:out value="${aAccount.id}"/>">X </a>
                     </c:if>
                 </tr>
             </c:forEach>
@@ -153,36 +151,36 @@
 
     <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
     <center><div>
-        Legend: Remove: (x)
-                   Add: (+)
+        Legend: Remove Transaction "X"
+
 
     </div></center>
 
 
-    <h4>Update Transactions</h4>
+    <h4>Add Transactions</h4>
     <c:if test="${error_message != null}">
         <div class="alert alert-danger"><c:out value="${error_message}"/></div>
     </c:if>
 
-    <form method="post" action="/mvc/secure/account/savings/save">
+    <form method="post" action="/mvc/secure/account/savings/add">
         <table class="table">
                 <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
 
 
-                <td><input type="text" name="date" value="<c:out value="${date}"/>"></td>
-                <td><input type="text" name="type" value="<c:out value="${type}"/>"></td>
-                <td><input type="text" name="description" value="<c:out value="${description}"/>"></td>
-                <td><input type="text" name="debit" value="<c:out value="${debit}"/>"></td>
-                <td><input type="text" name="credit" value="<c:out value="${credit}"/>"></td>
-                <td><input type="text" name="term" value="<c:out value="${term}"/>"></td>
-                <td><input type="text" name="return" value="<c:out value="${tBillRate}"/>"></td>
-                <td><input type="text" name="bankReturn" value="<c:out value="${bankRate}"/>"></td>
-                <td><input type="text" name="returnIncrease" value="<c:out value="${rateDifference}"/>"></td>
-                <td><input type="text" name="postedBalance" value="<c:out value="${postedBalance}"/>"></td>
-                <td><input type="text" name="availableBalance" value="<c:out value="${availableBalance}"/>"></td>
+            <tr><td><input type="text" name="date" placeholder="Date:  yyyy/mm/dd "></td>
+                <td><input type="text" name="type" placeholder="Type: Transfer"></td>
+                <td><input type="text" name="description" placeholder="Description "></td>
+                <td><input type="text" name="debit" placeholder="Debit (-) "></td>
+                <td><input type="text" name="credit" placeholder="Credit (+) "></td></tr>
+            <tr><td><input type="text" name="term" placeholder="Term:  3 Months "></td>
+                <td><input type="text" name="tBillReturn" placeholder="Treasury Return "></td>
+                <td><input type="text" name="bankReturn" placeholder="Bank Return: 0.01 "></td>
+                <td><input type="text" name="returnIncrease" placeholder="Return Increase "></td>
+                <td><input type="text" name="postedBalance" placeholder="Posted Balance "></td>
+                <td><input type="text" name="availableBalance" placeholder="Available Balance "></td></tr>
         </table>
         <div>
-            <input type="submit" name="Save"/>
+            <center><input type="submit" name="Save"/></center>
         </div>
     </form>
     </c:if>

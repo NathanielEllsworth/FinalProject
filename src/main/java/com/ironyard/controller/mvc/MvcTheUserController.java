@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.util.HashSet;
 
 /**
@@ -18,7 +19,7 @@ import java.util.HashSet;
  * Created by nathanielellsworth on 11/4/16.
  */
 @Controller
-@RequestMapping(path = "/mvc/secure/account/savings")
+@RequestMapping(path = "/mvc/secure/user")
 public class MvcTheUserController {
 
     @Autowired
@@ -27,48 +28,78 @@ public class MvcTheUserController {
     @Autowired
     AccountRepository accountRepository = null;
 
-    @RequestMapping(value = "delete", method = RequestMethod.GET)
-    public String deleteSavings(@RequestParam("id") Long id, HttpServletRequest request){
-        // get current logged in user, need to case (TheUser) to proper type
-        TheUser user = (TheUser)request.getSession().getAttribute("user");
-
-        // refetch user from db
-        TheUser fetchedUser = userRepository.findOne(user.getId());
-
-        // find this account id in user favorites and remove it
-        Account accountToRemove = null;
-        for(Account tmp: fetchedUser.getOtherAccounts()){
-            if(tmp.getId() == id){
-                // this is the account to remove
-                accountToRemove = tmp;
-            }
-        }
-
-        if(accountToRemove != null) {
-            fetchedUser.getOtherAccounts().remove(accountToRemove);
-        }
-        userRepository.save(fetchedUser);
+    @RequestMapping(value = "account/savings/delete", method = RequestMethod.GET)
+    public String deleteTransaction(@RequestParam("id") Long id, HttpServletRequest request){
+//        // get current logged in user, need to case (TheUser) to proper type
+//        TheUser user = (TheUser)request.getSession().getAttribute("user");
+//
+//        // refetch user from db
+//        TheUser fetchedUser = userRepository.findOne(user.getId());
+//
+//        // find this account id in user favorites and remove it
+//        Account accountToRemove = null;
+//        for(Account tmp: fetchedUser.getOtherAccounts()){
+//            if(tmp.getId() == id){
+//                // this is the account to remove
+//                accountToRemove = tmp;
+//            }
+//        }
+//
+//        if(accountToRemove != null) {
+//            fetchedUser.getOtherAccounts().remove(accountToRemove);
+//        }
+//        userRepository.save(fetchedUser);
+        accountRepository.delete(accountRepository.findOne(id));
         // send them to the home page
         return "redirect:/mvc/secure/account/savings";
     }
 
 
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String addAccount(@RequestParam("id") Long id, HttpServletRequest request){
-        // get current logged in user, need to case (TheUser) to proper type
-        TheUser user = (TheUser)request.getSession().getAttribute("user");
+    @RequestMapping(value = "account/savings/add", method = RequestMethod.GET)
+    public String addTransaction(@RequestParam("date") Date date,
+                                 @RequestParam("type") String type,
+                                 @RequestParam("description") String description,
+                                 @RequestParam("debit") double debit,
+                                 @RequestParam("credit") double credit,
+                                 @RequestParam("term") String term,
+                                 @RequestParam("tBillReturn") double tBillReturn,
+                                 @RequestParam("bankReturn") double bankReturn,
+                                 @RequestParam("returnIncrease") double returnIncrease,
+                                 @RequestParam("postedBalance") double postedBalance,
+                                 @RequestParam("availableBalance") double availableBalance, HttpServletRequest request) {
 
-        // refetch user from db
-        TheUser fetchedUser = userRepository.findOne(user.getId());
 
-        Account accountToAddToSavings = accountRepository.findOne(id);
+        Account tmpA = new Account();
+        // set properties
+        tmpA.setDate(date);
+        tmpA.setType(type);
+        tmpA.setDescription(description);
+        tmpA.setDebit(debit);
+        tmpA.setCredit(credit);
+        tmpA.setTerm(term);
+        tmpA.settBillRate(tBillReturn);
+        tmpA.setBankRate(bankReturn);
+        tmpA.setRateDifference(returnIncrease);
+        tmpA.setPostedBalance(postedBalance);
+        tmpA.setAvailableBalance(availableBalance);
+        accountRepository.save(tmpA);
 
-        if(fetchedUser.getOtherAccounts() == null){
-            fetchedUser.setOtherAccounts(new HashSet<>());
-        }
-        fetchedUser.getOtherAccounts().add(accountToAddToSavings);
 
-        userRepository.save(fetchedUser);
+//        // get current logged in user, need to case (TheUser) to proper type
+//        TheUser user = (TheUser)request.getSession().getAttribute("user");
+//
+//        // refetch user from db
+//        TheUser fetchedUser = userRepository.findOne(user.getId());
+//
+//        Account accountToAddToSavings = accountRepository.findOne(id);
+//
+//        if(fetchedUser.getOtherAccounts() == null){
+//            fetchedUser.setOtherAccounts(new HashSet<>());
+//        }
+//        fetchedUser.getOtherAccounts().add(accountToAddToSavings);
+
+//        userRepository.save(fetchedUser);
+
         // send them to the home page
         return "redirect:/mvc/secure/account/savings";
     }

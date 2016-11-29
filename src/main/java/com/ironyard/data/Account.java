@@ -30,7 +30,7 @@ public class Account {
     private double availableBalance;
 
 
-    BigDecimal bank = new BigDecimal(bankRate, MathContext.DECIMAL64);
+    //BigDecimal bank = new BigDecimal(bankRate, MathContext.DECIMAL64);
 
     // in test BigDecimal.valueOf(0.00083);
 
@@ -129,9 +129,7 @@ public class Account {
         this.bankRate = bankRate;
     }
 
-    public double getRateDifference() {
-        return rateDifference;
-    }
+    public double getRateDifference() {return rateDifference;}
 
     public void setRateDifference(double rateDifference) {
         this.rateDifference = rateDifference;
@@ -161,11 +159,11 @@ public class Account {
         this.id = id;
     }
 
-    public BigDecimal getBank() {
-        return bank;
-    }
-
-    public void setBank(BigDecimal bank) {
-        this.bank = bank;
-    }
+//    public BigDecimal getBank() {
+//        return bank;
+//    }
+//
+//    public void setBank(BigDecimal bank) {
+//        this.bank = bank;
+//    }
 }
