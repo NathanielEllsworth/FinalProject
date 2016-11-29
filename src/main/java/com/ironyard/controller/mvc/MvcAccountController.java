@@ -39,19 +39,10 @@ public class MvcAccountController {
     @Autowired
     AccountRepository accountRepository = null;
 
-    //@Autowired
-    //TreasuryBillsRepository treasuryBillsRepository = null;
-
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
-    public String OtherAccounts(@RequestParam(value = "page", required = false) Integer page,
+    public String JsonDataTBills(@RequestParam(value = "page", required = false) Integer page,
                        Model model, HttpServletRequest request){
-
-        TheUser user = (TheUser)request.getSession().getAttribute("user");
-        Long usrId = user.getId();
-        // get users savings
-        Set<Account> all = userRepository.findOne(usrId).getOtherAccounts();
-        model.addAttribute("all", all);
 
          //send them to the home page
         RestTemplate restTemplate = new RestTemplate();
@@ -103,17 +94,18 @@ public class MvcAccountController {
         Long usrId = user.getId();
 
         // get users savings
-        Set<Account> savings = userRepository.findOne(usrId).getOtherAccounts();
 
 
-        model.addAttribute("savings", savings);
+
+
+
 
         if(page == null){
             page = 0;
         }
         Sort s = new Sort(Sort.Direction.DESC, "date");
         PageRequest pr = new PageRequest(page, 10, s);
-        Page<Account> aPageOfTransactions =  accountRepository.findAll(pr);
+        Page<Account> aPageOfTransactions =  accountRepository.findByUserId(usrId,pr);
 
         AccountPager ap = new AccountPager(page ,aPageOfTransactions);
 

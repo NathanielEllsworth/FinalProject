@@ -19,19 +19,10 @@ public class TheUser {
 
 
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Account> otherAccounts;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Permission> abilities;
 
-    public Set<Account> getOtherAccounts() {
-        return otherAccounts;
-    }
-
-    public void setOtherAccounts(Set<Account> otherAccounts) {
-        this.otherAccounts = otherAccounts;
-    }
 
     public Set<Permission> getAbilities() {
         return abilities;

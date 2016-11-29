@@ -58,6 +58,13 @@ public class Account {
         this.availableBalance = availableBalance;
     }
 
+    public long getUserId() {return userId;}
+
+    public void setUserId(long userId) {this.userId = userId;}
+
+
+
+
     public String getTitle() {
         return title;
     }

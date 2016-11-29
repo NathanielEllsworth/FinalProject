@@ -76,10 +76,14 @@ public class MvcTheUserController {
                                  @RequestParam("bankReturn") double bankReturn,
                                  @RequestParam("returnIncrease") double returnIncrease,
                                  @RequestParam("postedBalance") double postedBalance,
-                                 @RequestParam("availableBalance") double availableBalance){
+                                 @RequestParam("availableBalance") double availableBalance,HttpServletRequest request){
+
+        TheUser user = (TheUser)request.getSession().getAttribute("user");
 
 
-        Account tmpA = new Account();
+
+        Account tmpA = new  Account();
+        tmpA.setUserId(user.getId());
         // set properties
         tmpA.setDate(date);
         tmpA.setType(type);
@@ -96,7 +100,7 @@ public class MvcTheUserController {
 
 
 //        // get current logged in user, need to case (TheUser) to proper type
-//        TheUser user = (TheUser)request.getSession().getAttribute("user");
+//
 //
 //        // refetch user from db
 //        TheUser fetchedUser = userRepository.findOne(user.getId());
