@@ -57,12 +57,14 @@
 
 <body>
 
+
+
 <div class="container">
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="/mvc/secure/account/savings">Home</a></li>
-                <li role="presentation"><a href="/mvc/secure/account/all">Accounts</a></li>
+                <li role="presentation"><a href="/mvc/secure/account/all">Treasury Bills</a></li>
                 <c:if test="${user_loggedin_perms.containsKey('ADMIN_ADD_USER')}">
                     <li role="presentation"><a href="/mvc/secure/admin/users">Users</a></li>
                 </c:if>
@@ -71,52 +73,12 @@
         </nav>
         <h3 class="text-muted">My Investment and Savings Account</h3>
     </div>
-    <div class="row marketing">
-        <div class="col-lg-9">
-            <h4>View Current Issued Treasury Bills</h4>
-
-            <p/>
-            <p/>
-            <p/>
-            <table class="table">
-                <tr>
-                    <th>
-            <div/>
-            <form action="/mvc/secure/account/savings/tbills" method="get">
-                <select name='dropdown' onchange='this.form.submit()'>
-                    <c:forEach items="${aDate}" var="date">
-                        <option value="<c:out value="${date.issueDate}"/>"><c:out value="${date.issueDate}"/></option>
-                    </c:forEach>
-                </select>
-                <noscript><input type="submit" value="Submit"></noscript>
-            </form>
-        </div>
-        </th>
-
-
-
-                <th>Security Term</th>
-                <th>(0.01% Annual Bank return)<br />
-                          Current Return %</th>
-                <th><a href='http://www.treasurydirect.gov/indiv/TDTour/open_account.htm' type="submit" class="btn btn-info" role="button">Open a Treasury Account</a></th>
-            </tr>
-            <tbody>
-            <c:forEach items="${tbills}" var="aTbills">
-                <tr>
-                    <td><c:out value="${aTbills.issueDate}"/></td>
-                    <td><c:out value="${aTbills.securityTerm}"/></td>
-                    <td><c:out value="${aTbills.highInvestmentRate}"/></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-
 </div>
 
 
 <div class="row marketing">
-    <div class="col-lg-16">
+    <center><div class="col-lg-11">
+        <p/>
         <h4>Transaction History</h4>
 
         <p/>
@@ -169,12 +131,17 @@
                     <td class="greentext"><c:out  value="+${aAccount.rateDifference}%"/></td>
                     <td><c:out value="${aAccount.postedBalance}"/></td>
                     <td><c:out value="${aAccount.availableBalance}"/></td>
+                    <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
+                    <td><a href="/mvc/secure/user/account/savings/delete?id=<c:out value="${aAccount.id}"/>">(x) </a>
+                        <a href="/mvc/secure/user/account/savings/add?id=<c:out value="${aAccount.id}"/>">(+) </a>
+                        <a href="/mvc/secure/user/account/savings/update?id=<c:out value="${aAccount.id}"/>"> Update </a></td>
+                    </c:if>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
 
-    </div>
+    </div></center>
 
 </div>
 
@@ -183,6 +150,42 @@
         Total Pages: <c:out value="${account_pager.currentPage}"/>
         Total Accounts: <c:out value="${account_pager.totalPages}"/>
     </div>
+
+    <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
+    <center><div>
+        Legend: Remove: (x)
+                   Add: (+)
+
+    </div></center>
+
+
+    <h4>Update Transactions</h4>
+    <c:if test="${error_message != null}">
+        <div class="alert alert-danger"><c:out value="${error_message}"/></div>
+    </c:if>
+
+    <form method="post" action="/mvc/secure/account/savings/save">
+        <table class="table">
+                <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
+
+
+                <td><input type="text" name="date" value="<c:out value="${date}"/>"></td>
+                <td><input type="text" name="type" value="<c:out value="${type}"/>"></td>
+                <td><input type="text" name="description" value="<c:out value="${description}"/>"></td>
+                <td><input type="text" name="debit" value="<c:out value="${debit}"/>"></td>
+                <td><input type="text" name="credit" value="<c:out value="${credit}"/>"></td>
+                <td><input type="text" name="term" value="<c:out value="${term}"/>"></td>
+                <td><input type="text" name="return" value="<c:out value="${tBillRate}"/>"></td>
+                <td><input type="text" name="bankReturn" value="<c:out value="${bankRate}"/>"></td>
+                <td><input type="text" name="returnIncrease" value="<c:out value="${rateDifference}"/>"></td>
+                <td><input type="text" name="postedBalance" value="<c:out value="${postedBalance}"/>"></td>
+                <td><input type="text" name="availableBalance" value="<c:out value="${availableBalance}"/>"></td>
+        </table>
+        <div>
+            <input type="submit" name="Save"/>
+        </div>
+    </form>
+    </c:if>
     <p>&copy; 2016 Company, Inc.</p>
 </footer>
 

@@ -18,11 +18,13 @@ INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debi
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type) VALUES (-13, 7000, 0, 7000, '2016-06-07', 0, 'EB from Checking #2694317712', 0, 0, 0, '-', 'Savings', 'Transfer');
 
 
-INSERT INTO public.permission (id, description, key) VALUES (-1, 'Admin Users', 'ADMIN_ADD_USER');
+INSERT INTO public.permission (id, description, key) VALUES (-1, 'Admin User (ability to add other users)', 'ADMIN_ADD_USER');
 INSERT INTO public.permission (id, description, key) VALUES (-2, 'Allow Treasury Bill Purchases', 'USER_BUY_TBILLS');
+INSERT INTO public.permission (id, description, key) VALUES (-3, 'Allow User to Edit Transactions', 'USER_EDIT_TRANSACTIONS');
 
 
 INSERT INTO public.the_user_abilities (the_user_id, abilities_id) VALUES (-1, -1);
-
+INSERT INTO public.the_user_abilities (the_user_id, abilities_id) VALUES (-1, -2);
+INSERT INTO public.the_user_abilities (the_user_id, abilities_id) VALUES (-1, -3);
 
 

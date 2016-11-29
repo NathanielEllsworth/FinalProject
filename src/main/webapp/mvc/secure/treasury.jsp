@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: nathanielellsworth
   Date: 11/24/16
-  Time: 3:34 PM
+  Time: 3:36 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -65,106 +65,70 @@
                 <li role="presentation"><a href="/mvc/secure/account/savings">Home</a></li>
                 <li role="presentation"><a href="/mvc/secure/account/all">Treasury Bills</a></li>
                 <c:if test="${user_loggedin_perms.containsKey('ADMIN_ADD_USER')}">
-                    <li role="presentation" class="active"><a href="/mvc/secure/admin/users">Users</a></li>
+                    <li role="presentation"><a href="/mvc/secure/admin/users">Users</a></li>
                 </c:if>
                 <li role="presentation"><a href="/mvc/open/logout">Logout</a></li>
             </ul>
         </nav>
-        <h3 class="text-muted">User Administration</h3>
+        <h3 class="text-muted">Other Accounts</h3>
     </div>
-
-
     <div class="row marketing">
-        <div class="col-lg-6">
-            <h4>Save User</h4>
-            <c:if test="${error_message != null}">
-                <div class="alert alert-danger"><c:out value="${error_message}"/></div>
-            </c:if>
-
-            <form method="post" action="/mvc/secure/admin/user/save">
-                <table class="table">
-                    <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
-                    <tr>
-                        <td>Display Name:</td>
-                        <td><input type="text" name="displayname" value="<c:out value="${displayname}"/>"></td>
-                    </tr>
-                    <tr>
-                        <td>Login Name:</td>
-                        <td><input type="text" name="username" value="<c:out value="${username}"/>"></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><input type="password" name="password" value="<c:out value="${password}"/>"></td>
-                    </tr>
-                    <tr>
-                        <td>Password (Repeat):</td>
-                        <td><input type="password" name="password2" value="<c:out value="${password}"/>"></td>
-                    </tr>
-                    <tr>
-                        <td>Permissions:</td>
-                        <td>
-                            <c:forEach items="${permissions}" var="aPerm">
-
-                                <div>
-                                    <input type="checkbox" name="permissions"
-                                    <c:if test="${edit_user_perms.containsKey(aPerm.key)}">
-                                           checked
-                                    </c:if>
-                                           value="<c:out value="${aPerm.id}"/>">
-
-                                    <c:out value="${aPerm.description}"/>
-                                </div>
-                            </c:forEach>
-                        </td>
-                    </tr>
-                </table>
-                <div>
-                    <input type="submit" name="Save"/>
-                </div>
-            </form>
-            <p></p>
-            <h4>All System Users</h4>
+        <div class="col-lg-10">
+            <h4>View Current and Recently Issued Treasury Bills</h4>
 
             <p/>
+            <p/>
+            <p/>
+            <div class="pull-left">
+                <c:if test="${account_pager.previous}">
+                    <a class="btn btn-default btn-sm"
+                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
+                </c:if>
+            </div>
+            <div class="pull-right">
+                <c:if test="${account_pager.next}">
+                    <a class="btn btn-default btn-sm"
+                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
+                </c:if>
+            </div>
 
             <table class="table">
-                <thead>
-                <tr>
-                    <th>Action</th>
-                    <th>Username</th>
-                    <th>DisplayName</th>
-                </tr>
-                </thead>
-                <tbody>
 
-                <c:forEach items="${users}" var="aUser">
+
+                <th>Issue Date</th>
+                <th>Security Term</th>
+                <th>(0.01% Annual Bank return)<br/>
+                    Current Return %
+                </th>
+                <th><a href='https://ycharts.com/indicators/1_month_treasury_rate' type="submit"
+                       class="btn btn-info" role="button">View Historical Data</a></th>
+                <c:if test="${user_loggedin_perms.containsKey('USER_BUY_TBILLS')}">
+                    <th><a href='http://www.treasurydirect.gov/indiv/TDTour/open_account.htm' type="submit"
+                           class="btn btn-info" role="button">Open a Treasury Account</a></th>
+                </c:if>
+
+
+
                     <tr>
-                        <td>
-                            <div>
-                                <a href="/mvc/secure/admin/user/delete?id=<c:out value="${aUser.id}"/>">DELETE</a>
-                            </div>
-                            <div>
-                                <a href="/mvc/secure/admin/user/edit?id=<c:out value="${aUser.id}"/>">EDIT</a>
-                            </div>
-                        </td>
-                        <td><c:out value="${aUser.username}"/></td>
-                        <td><c:out value="${aUser.displayName}"/></td>
+                        <th>
+                            <div/>
+                            <form action="/mvc/secure/account/all/tbills" method="get">
+                                <c:forEach items="${aTBill}" var="date">
+                    <tr>
+                        <td><c:out value="${date.issueDate}"/></td>
+                        <td><c:out value="${date.securityTerm}"/></td>
+                        <td><c:out value="${date.highInvestmentRate}"/></td>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </c:forEach>
+                            </form>
 
+            </table>
         </div>
 
-    </div>
 
-    <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
-    </footer>
+    </div> <!-- /container -->
 
-</div> <!-- /container -->
-
-
+</div>
 </body>
 </html>
 

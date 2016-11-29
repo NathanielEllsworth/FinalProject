@@ -49,7 +49,7 @@ public class MvcTheUserController {
         }
         userRepository.save(fetchedUser);
         // send them to the home page
-        return "redirect:/mvc/secure/account/savings/all";
+        return "redirect:/mvc/secure/account/savings";
     }
 
 
@@ -70,6 +70,6 @@ public class MvcTheUserController {
 
         userRepository.save(fetchedUser);
         // send them to the home page
-        return "redirect:/mvc/secure/account/savings/all";
+        return "redirect:/mvc/secure/account/savings";
     }
 }

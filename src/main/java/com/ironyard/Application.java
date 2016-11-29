@@ -63,7 +63,7 @@ public class Application {
     private ApiInfo apiInfoPermissions() {
         return new ApiInfoBuilder()
                 .title("This is our API")
-                .description("Do all permsision stuff here :D!")
+                .description("Make all permissions here")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")
                 .license("Apache License Version 2.0")

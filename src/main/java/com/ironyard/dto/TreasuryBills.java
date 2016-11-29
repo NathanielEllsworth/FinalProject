@@ -17,8 +17,6 @@ public class TreasuryBills {
     @JsonProperty(value = "issueDate")
     private String issueDate;                   // MM/dd/yyyy
 
-    @JsonProperty(value = "maturityDate")
-    private String maturityDate;
 
     @JsonProperty(value = "highInvestmentRate")         //rate of return
     private String highInvestmentRate;
@@ -42,17 +40,13 @@ public class TreasuryBills {
         this.issueDate = issueDate;
     }
 
-    public String getMaturityDate() {
-        return maturityDate.replaceAll("T00:00:00","");
-    }
-
-    public void setMaturityDate(String maturityDate) {
-        this.maturityDate = maturityDate;
-    }
 
     public String getHighInvestmentRate() {return highInvestmentRate.replaceAll("000","%");}
 
-    public void setHighInvestmentRate(String highInvestmentRate) {
-        this.highInvestmentRate = highInvestmentRate;
-    }
+    public void setHighInvestmentRate(String highInvestmentRate) {this.highInvestmentRate = highInvestmentRate;}
+
+
+    @Override
+    public String toString(){return String.format("( %s : %s : %s)", getIssueDate(), getSecurityTerm(), getHighInvestmentRate());}
+
 }
