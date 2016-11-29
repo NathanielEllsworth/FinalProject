@@ -101,10 +101,10 @@
                     Current Return %
                 </th>
                 <th><a href='https://ycharts.com/indicators/1_month_treasury_rate' type="submit"
-                       class="btn btn-info" role="button">View Historical Data</a></th>
+                       class="btn btn-info" role="button" target="_new">View Historical Data</a></th>
                 <c:if test="${user_loggedin_perms.containsKey('USER_BUY_TBILLS')}">
                     <th><a href='http://www.treasurydirect.gov/indiv/TDTour/open_account.htm' type="submit"
-                           class="btn btn-info" role="button">Open a Treasury Account</a></th>
+                           class="btn btn-info" role="button" target="_new">Open a Treasury Account</a></th>
                 </c:if>
 
 

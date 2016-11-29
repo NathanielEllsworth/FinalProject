@@ -55,7 +55,7 @@ public class PermissionController {
 
         //Sort default
         if (sortby == null){
-            sortby = "title";
+            sortby = "key";
         }
 
         //Sort default direction

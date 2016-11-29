@@ -30,7 +30,15 @@ public class Application {
                 .apiInfo(apiInfoUser())
                 .select()
                 .paths(regex("/rest/user.*"))
-                .build();
+                .build()
+                .globalOperationParameters(
+                        newArrayList(new ParameterBuilder()
+                                .name("x-authorization-key")
+                                .description("API Authorization Key")
+                                .modelRef(new ModelRef("string"))
+                                .parameterType("header")
+                                .required(true)
+                                .build()));
     }
 
     @Bean
@@ -58,12 +66,20 @@ public class Application {
                 .apiInfo(apiInfoPermissions())
                 .select()
                 .paths(regex("/rest/permission.*"))
-                .build();
+                .build()
+                .globalOperationParameters(
+                        newArrayList(new ParameterBuilder()
+                                .name("x-authorization-key")
+                                .description("API Authorization Key")
+                                .modelRef(new ModelRef("string"))
+                                .parameterType("header")
+                                .required(true)
+                                .build()));
     }
     private ApiInfo apiInfoPermissions() {
         return new ApiInfoBuilder()
                 .title("This is our API")
-                .description("Make all permissions here")
+                .description("Make all permissions here. Authorization Key:  M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh8Z")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")
                 .license("Apache License Version 2.0")
@@ -74,7 +90,7 @@ public class Application {
     private ApiInfo apiInfoUser() {
         return new ApiInfoBuilder()
                 .title("This is our API")
-                .description("Do all USER things here")
+                .description("Do all USER things here. Authorization Key:  M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh8Z")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")
                 .license("Apache License Version 2.0")
@@ -85,7 +101,7 @@ public class Application {
     private ApiInfo apiInfoAccounts() {
         return new ApiInfoBuilder()
                 .title("This is our API")
-                .description("Do all Account things here")
+                .description("Do all Account things here. Authorization Key:  M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh8Z")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")
                 .license("Apache License Version 2.0")

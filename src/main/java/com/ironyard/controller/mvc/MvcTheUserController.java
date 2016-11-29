@@ -18,7 +18,7 @@ import java.util.HashSet;
  * Created by nathanielellsworth on 11/4/16.
  */
 @Controller
-@RequestMapping(path = "/mvc/secure/account/all")
+@RequestMapping(path = "/mvc/secure/account/savings")
 public class MvcTheUserController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class MvcTheUserController {
     @Autowired
     AccountRepository accountRepository = null;
 
-    @RequestMapping(value = "account/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String deleteSavings(@RequestParam("id") Long id, HttpServletRequest request){
         // get current logged in user, need to case (TheUser) to proper type
         TheUser user = (TheUser)request.getSession().getAttribute("user");
@@ -53,7 +53,7 @@ public class MvcTheUserController {
     }
 
 
-    @RequestMapping(value = "account/add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addAccount(@RequestParam("id") Long id, HttpServletRequest request){
         // get current logged in user, need to case (TheUser) to proper type
         TheUser user = (TheUser)request.getSession().getAttribute("user");
