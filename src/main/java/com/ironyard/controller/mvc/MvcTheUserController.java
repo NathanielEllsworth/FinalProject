@@ -78,14 +78,14 @@ public class MvcTheUserController {
     public String addTransaction(@RequestParam("date") Date date,
                                  @RequestParam("type") String type,
                                  @RequestParam("description") String description,
-                                 @RequestParam("debit") double debit,
-                                 @RequestParam("credit") double credit,
+                                 @RequestParam("debit") String debit,
+                                 @RequestParam("credit") String credit,
                                  @RequestParam("term") String term,
-                                 @RequestParam("tBillReturn") double tBillReturn,
-                                 @RequestParam("bankReturn") double bankReturn,
-                                 @RequestParam("returnIncrease") double returnIncrease,
-                                 @RequestParam("postedBalance") double postedBalance,
-                                 @RequestParam("availableBalance") double availableBalance,HttpServletRequest request){
+                                 @RequestParam("tBillReturn") String tBillReturn,
+                                 @RequestParam("bankReturn") String bankReturn,
+                                 @RequestParam("returnIncrease") String returnIncrease,
+                                 @RequestParam("postedBalance") String postedBalance,
+                                 @RequestParam("availableBalance") String availableBalance,HttpServletRequest request){
 
 
         TheUser user = (TheUser)request.getSession().getAttribute("user");

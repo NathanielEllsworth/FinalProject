@@ -121,12 +121,13 @@
                     <th>Date</th>
                     <th>Type</th>
                     <th>Description</th>
-                    <th>Debit (-)</th>
                     <th>Credit (+)</th>
+                    <th>Debit (-)</th>
                     <th>Term</th>
-                    <th>Return</th>
-                    <th>Bank Return</th>
-                    <th>Return increase</th>
+                    <th>T-Bill Return</th>
+                    <th>Bank Return (0.01%)</th>
+                    <th>Risk-Free<br/>
+                        Return Increase</th>
                     <th>Posted Balance</th>
                     <th>Available Balance</th>
                 </tr>
@@ -144,12 +145,12 @@
                         <td><c:out value="${aAccount.date}"/></td>
                         <td><c:out value="${aAccount.type}"/></td>
                         <td><c:out value="${aAccount.description}"/></td>
-                        <td><c:out value="${aAccount.debit}"/></td>
                         <td><c:out value="${aAccount.credit}"/></td>
+                        <td><c:out value="${aAccount.debit}"/></td>
                         <td><c:out value="${aAccount.term}"/></td>
-                        <td><c:out value="${aAccount.tBillRate}%"/></td>
-                        <td><c:out value="${aAccount.bankRate}%"/></td>
-                        <td class="greentext"><c:out value="+${aAccount.rateDifference}%"/></td>
+                        <td><c:out value="${aAccount.tBillRate}"/></td>
+                        <td><c:out value="${aAccount.bankRate}"/></td>
+                        <td class="greentext"><c:out value="${aAccount.rateDifference}"/></td>
                         <td><c:out value="${aAccount.postedBalance}"/></td>
                         <td><c:out value="${aAccount.availableBalance}"/></td>
 

@@ -20,14 +20,14 @@ public class Account {
     private Date date;
     private String type;
     private String description;
-    private double debit;        // (-)
-    private double credit;       // (+)
+    private String debit;        // (-)
+    private String credit;       // (+)
     private String term;                           // only for savings accounts
-    private double tBillRate;                  // only for savings accounts
-    private double bankRate;
-    private double rateDifference; //percent % difference between -treasury rate-  and -bank rate-
-    private double postedBalance;            //**posted balance is the same as Balance**
-    private double availableBalance;
+    private String tBillRate;                  // only for savings accounts
+    private String bankRate;
+    private String rateDifference; //percent % difference between -treasury rate-  and -bank rate-
+    private String postedBalance;            //**posted balance is the same as Balance**
+    private String availableBalance;
 
 
     @Id
@@ -37,7 +37,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(String title, Date date, String type, String description, double debit, double credit, String term, double tBillRate, double bankRate, double rateDifference, double postedBalance, double availableBalance) {
+    public Account(String title, Date date, String type, String description, String debit, String credit, String term, String tBillRate, String bankRate, String rateDifference, String postedBalance, String availableBalance) {
         this.title = title;
         this.date = date;
         this.type = type;
@@ -52,8 +52,7 @@ public class Account {
         this.availableBalance = availableBalance;
     }
 
-
-//_________________________________________________________________________
+    //_________________________________________________________________________
 
 
     public long getUserId() {return userId;}
@@ -96,19 +95,19 @@ public class Account {
         this.description = description;
     }
 
-    public double getDebit() {
+    public String getDebit() {
         return debit;
     }
 
-    public void setDebit(double debit) {
+    public void setDebit(String debit) {
         this.debit = debit;
     }
 
-    public double getCredit() {
+    public String getCredit() {
         return credit;
     }
 
-    public void setCredit(double credit) {
+    public void setCredit(String credit) {
         this.credit = credit;
     }
 
@@ -120,41 +119,43 @@ public class Account {
         this.term = term;
     }
 
-    public double gettBillRate() {
+    public String gettBillRate() {
         return tBillRate;
     }
 
-    public void settBillRate(double tBillRate) {
+    public void settBillRate(String tBillRate) {
         this.tBillRate = tBillRate;
     }
 
-    public double getBankRate() {
+    public String getBankRate() {
         return bankRate;
     }
 
-    public void setBankRate(double bankRate) {
+    public void setBankRate(String bankRate) {
         this.bankRate = bankRate;
     }
 
-    public double getRateDifference() {return rateDifference;}
+    public String getRateDifference() {
+        return rateDifference;
+    }
 
-    public void setRateDifference(double rateDifference) {
+    public void setRateDifference(String rateDifference) {
         this.rateDifference = rateDifference;
     }
 
-    public double getPostedBalance() {
+    public String getPostedBalance() {
         return postedBalance;
     }
 
-    public void setPostedBalance(double postedBalance) {
+    public void setPostedBalance(String postedBalance) {
         this.postedBalance = postedBalance;
     }
 
-    public double getAvailableBalance() {
+    public String getAvailableBalance() {
         return availableBalance;
     }
 
-    public void setAvailableBalance(double availableBalance) {
+    public void setAvailableBalance(String availableBalance) {
         this.availableBalance = availableBalance;
     }
 

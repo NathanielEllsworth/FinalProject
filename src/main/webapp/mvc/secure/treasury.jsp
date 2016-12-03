@@ -118,7 +118,7 @@
                     <tr>
                         <td><c:out value="${date.issueDate}"/></td>
                         <td><c:out value="${date.securityTerm}"/></td>
-                        <td><c:out value="${date.highInvestmentRate}"/></td>
+                        <td><c:out value="${date.highInvestmentRate}%"/></td>
                     </tr>
                     </c:forEach>
                             </form>

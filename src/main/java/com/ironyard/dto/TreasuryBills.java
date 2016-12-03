@@ -40,7 +40,7 @@ public class TreasuryBills {
     }
 
 
-    public String getHighInvestmentRate() {return highInvestmentRate.replaceAll("000","%");}
+    public String getHighInvestmentRate() {return highInvestmentRate.replaceAll("000","");}
 
     public void setHighInvestmentRate(String highInvestmentRate) {this.highInvestmentRate = highInvestmentRate;}
 

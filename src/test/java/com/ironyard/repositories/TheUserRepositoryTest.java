@@ -36,7 +36,7 @@ public class TheUserRepositoryTest {
     @Test
     public void testUserDeleteShouldNotDeleteMovieOrPerm() throws Exception{
 
-        Account savedAccount = acctRepo.save(new Account("Savings", java.sql.Date.valueOf("2016-07-04"), "Transfer", "EB to US Treasury Dept", 1000, 0, "1 Month", 0.28, 0.00083, 33513.44, 110000, 0));
+        Account savedAccount = acctRepo.save(new Account("Savings", java.sql.Date.valueOf("2016-07-04"), "Transfer", "EB to US Treasury Dept", "1000", "0", "1 Month", "0.28", "0.00083", "33513.44", "110000", "0"));
 
         // create permission
         Permission savedPermission = permRepo.save(new Permission("USER_BUY_TBILLS", "Ability to purchase Treasury bills."));
