@@ -82,7 +82,7 @@ public class MvcAccountController {
             page = 0;
         }
         Sort s = new Sort(Sort.Direction.DESC, "date");
-        PageRequest pr = new PageRequest(page, 8, s);
+        PageRequest pr = new PageRequest(page, 10, s);
         Page<Account> aPageOfTransactions =  accountRepository.findByUserId(usrId,pr);
 
         AccountPager ap = new AccountPager(page ,aPageOfTransactions);
