@@ -10,8 +10,17 @@ import java.io.IOException;
 /**
  * Created by nathanielellsworth on 11/5/16.
  */
+
 public class MvcSecurityFilter implements javax.servlet.Filter {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
@@ -27,6 +36,7 @@ public class MvcSecurityFilter implements javax.servlet.Filter {
             resp.sendRedirect("/mvc/open/login.jsp");
         }
     }
+
 
     @Override
     public void destroy() {

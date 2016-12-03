@@ -15,49 +15,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.HashSet;
 
 /**
  * This is where the User can add, delete, create and rename their different Account
  *
  * Created by nathanielellsworth on 11/4/16.
  */
+
 @Controller
 @RequestMapping(path = "/mvc/secure/user")
 public class MvcTheUserController {
 
+
+
     @Autowired
     TheUserRepository userRepository = null;
-
     @Autowired
     AccountRepository accountRepository = null;
 
+
+    /**
+     *
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "account/savings/delete", method = RequestMethod.GET)
     public String deleteTransaction(@RequestParam("id") Long id, HttpServletRequest request){
-//        // get current logged in user, need to case (TheUser) to proper type
-//        TheUser user = (TheUser)request.getSession().getAttribute("user");
-//
-//        // refetch user from db
-//        TheUser fetchedUser = userRepository.findOne(user.getId());
-//
-//        // find this account id in user favorites and remove it
-//        Account accountToRemove = null;
-//        for(Account tmp: fetchedUser.getOtherAccounts()){
-//            if(tmp.getId() == id){
-//                // this is the account to remove
-//                accountToRemove = tmp;
-//            }
-//        }
-//
-//        if(accountToRemove != null) {
-//            fetchedUser.getOtherAccounts().remove(accountToRemove);
-//        }
-//        userRepository.save(fetchedUser);
         accountRepository.delete(accountRepository.findOne(id));
         // send them to the home page
         return "redirect:/mvc/secure/account/savings";
     }
 
+    /**
+     *
+     * @param binder
+     */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -65,6 +58,22 @@ public class MvcTheUserController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
+    /**
+     *
+     * @param date
+     * @param type
+     * @param description
+     * @param debit
+     * @param credit
+     * @param term
+     * @param tBillReturn
+     * @param bankReturn
+     * @param returnIncrease
+     * @param postedBalance
+     * @param availableBalance
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "account/savings/add", method = RequestMethod.POST)
     public String addTransaction(@RequestParam("date") Date date,
                                  @RequestParam("type") String type,
@@ -78,8 +87,8 @@ public class MvcTheUserController {
                                  @RequestParam("postedBalance") double postedBalance,
                                  @RequestParam("availableBalance") double availableBalance,HttpServletRequest request){
 
-        TheUser user = (TheUser)request.getSession().getAttribute("user");
 
+        TheUser user = (TheUser)request.getSession().getAttribute("user");
 
 
         Account tmpA = new  Account();
@@ -98,21 +107,6 @@ public class MvcTheUserController {
         tmpA.setAvailableBalance(availableBalance);
         accountRepository.save(tmpA);
 
-
-//        // get current logged in user, need to case (TheUser) to proper type
-//
-//
-//        // refetch user from db
-//        TheUser fetchedUser = userRepository.findOne(user.getId());
-//
-//        Account accountToAddToSavings = accountRepository.findOne(id);
-//
-//        if(fetchedUser.getOtherAccounts() == null){
-//            fetchedUser.setOtherAccounts(new HashSet<>());
-//        }
-//        fetchedUser.getOtherAccounts().add(accountToAddToSavings);
-
-//        userRepository.save(fetchedUser);
 
         // send them to the home page
         return "redirect:/mvc/secure/account/savings";

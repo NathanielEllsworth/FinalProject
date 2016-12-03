@@ -14,16 +14,24 @@ import org.slf4j.LoggerFactory;
  *
  * Created by nathanielellsworth on 11/14/16.
  */
+
 @RestController
 @RequestMapping(path = "/rest/account")
 public class AccountController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+
+
     @Autowired
     private AccountRepository acctRepo;
 
 
+    /**
+     *
+     * @param aAccount
+     * @return
+     */
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public Account save(@RequestBody Account aAccount){
         log.debug("Begin save:" + aAccount);
@@ -32,7 +40,11 @@ public class AccountController {
         return found;
     }
 
-
+    /**
+     *
+     * @param aAccount
+     * @return
+     */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public Account update(@RequestBody Account aAccount){
         log.debug("begin update:" + aAccount);
@@ -42,6 +54,11 @@ public class AccountController {
         return found;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public Account show(@PathVariable Long id){
         log.debug("Begin show:" + id);
@@ -50,8 +67,14 @@ public class AccountController {
         return found;
     }
 
-
-
+    /**
+     *
+     * @param page
+     * @param size
+     * @param sortby
+     * @param direction
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public Iterable<Account> listAll(@RequestParam("page") Integer page,
                                      @RequestParam("size") Integer size,
@@ -59,7 +82,6 @@ public class AccountController {
                                      @RequestParam(value = "dir", required = false)Sort.Direction direction){
 
         log.debug(String.format("Begin listAll (page:%s, size:%s, sortby:%s, dir:%s):", page, size, sortby, direction));
-
 
         //Auto sorting default
         if(sortby == null){
@@ -78,6 +100,11 @@ public class AccountController {
         return found;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public Account delete(@PathVariable Long id){
         log.debug(String.format("Begin delete: %s", id));
@@ -87,8 +114,11 @@ public class AccountController {
         return deleted;
     }
 
-
-
+    /**
+     *
+     * @param e
+     * @return
+     */
     @ExceptionHandler(value = Throwable.class)
     public String nfeHandler(Throwable e){
         log.error("Error in Account Controller", e);

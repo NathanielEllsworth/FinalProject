@@ -12,12 +12,23 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * This tool was used to catch errors within the Json data and became helpful on previous projects
+ *
  * Created by nathanielellsworth on 11/11/16.
  */
+
 public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
 
     final static Logger log = LoggerFactory.getLogger(LoggingRequestInterceptor.class);
 
+    /**
+     *
+     * @param request
+     * @param body
+     * @param execution
+     * @return
+     * @throws IOException
+     */
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         traceRequest(request, body);
@@ -26,6 +37,12 @@ public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
         return response;
     }
 
+    /**
+     *
+     * @param request
+     * @param body
+     * @throws IOException
+     */
     private void traceRequest(HttpRequest request, byte[] body) throws IOException {
         log.debug("===========================request begin================================================");
         log.debug("URI         : {}", request.getURI());
@@ -35,6 +52,11 @@ public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
         log.debug("==========================request end================================================");
     }
 
+    /**
+     *
+     * @param response
+     * @throws IOException
+     */
     private void traceResponse(ClientHttpResponse response) throws IOException {
         StringBuilder inputStringBuilder = new StringBuilder();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getBody(), "UTF-8"));

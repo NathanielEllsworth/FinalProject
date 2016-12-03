@@ -58,15 +58,28 @@
 
 <body>
 
+<!-- Top of the Page Navigation Links -->
 <div class="container">
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
+                <!-- Login Automatically sends the Authenticated User to their 'Home Page' -->
                 <li role="presentation"><a href="/mvc/secure/account/savings">Home</a></li>
+
+
+                <!-- The Treasury Bills Navigation link sends the User to the Live Data Stream
+                 of current US Treasury Bills directly from the United States Treasury Department -->
                 <li role="presentation"><a href="/mvc/secure/account/all">Treasury Bills</a></li>
+
+
+                <!-- Depending on the privileges given to a User, the key below will grant or deny a user access
+                  of enrolling or deleting other individuals into the group plan -->
                 <c:if test="${user_loggedin_perms.containsKey('ADMIN_ADD_USER')}">
                     <li role="presentation" class="active"><a href="/mvc/secure/admin/users">Users</a></li>
                 </c:if>
+
+
+                <!-- This Link Automatically Signs the User out and forwards them back to the Login page -->
                 <li role="presentation"><a href="/mvc/open/logout">Logout</a></li>
             </ul>
         </nav>
@@ -77,6 +90,9 @@
     <div class="row marketing">
         <div class="col-lg-6">
             <h4>Save User</h4>
+
+
+            <!-- Error Message Displayed when a new User being added conflicts with the system -->
             <c:if test="${error_message != null}">
                 <div class="alert alert-danger"><c:out value="${error_message}"/></div>
             </c:if>
@@ -159,7 +175,7 @@
     </div>
 
     <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
+        <p>&copy; 2016 Click Here For Money, Inc.</p>
     </footer>
 
 </div> <!-- /container -->

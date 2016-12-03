@@ -11,12 +11,13 @@ import java.net.URL;
 /**
  * Created by nathanielellsworth on 11/4/16.
  */
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class TreasuryBillsTest {
 
 
-    // just a quick status code test
+    // quick status code test
 
     @Test
     public void addQuickTreasuryBillTest() throws IOException{

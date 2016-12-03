@@ -58,16 +58,28 @@
 <body>
 
 
-
+<!-- Top of the Page Navigation Links -->
 <div class="container">
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
+                <!-- Login Automatically sends the Authenticated User to their 'Home Page' -->
                 <li role="presentation" class="active"><a href="/mvc/secure/account/savings">Home</a></li>
+
+
+                <!-- The Treasury Bills Navigation link sends the User to the Live Data Stream
+                 of current US Treasury Bills directly from the United States Treasury Department -->
                 <li role="presentation"><a href="/mvc/secure/account/all">Treasury Bills</a></li>
+
+
+                <!-- Depending on the privileges given to a User, the key below will grant or deny a user access
+                  of enrolling or deleting other individuals into the group plan -->
                 <c:if test="${user_loggedin_perms.containsKey('ADMIN_ADD_USER')}">
                     <li role="presentation"><a href="/mvc/secure/admin/users">Users</a></li>
                 </c:if>
+
+
+                <!-- This Link Automatically Signs the User out and forwards them back to the Login page -->
                 <li role="presentation"><a href="/mvc/open/logout">Logout</a></li>
             </ul>
         </nav>
@@ -77,69 +89,84 @@
 
 
 <div class="row marketing">
-    <center><div class="col-lg-11">
-        <p/>
-        <h4>Transaction History</h4>
+    <center>
+        <div class="col-lg-11">
+            <p/>
+            <h4>Transaction History</h4>
 
-        <p/>
-        <div class="pull-left">
-            <c:if test="${account_pager.previous}">
-                <a class="btn btn-default btn-sm"
-                   href="/mvc/secure/account/savings?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
-            </c:if>
-        </div>
-        <div class="pull-right">
-            <c:if test="${account_pager.next}">
-                <a class="btn btn-default btn-sm"
-                   href="/mvc/secure/account/savings?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
-            </c:if>
-        </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Debit (-)</th>
-                <th>Credit (+)</th>
-                <th>Term</th>
-                <th>Return</th>
-                <th>Bank Return</th>
-                <th>Return increase</th>
-                <th>Posted Balance</th>
-                <th>Available Balance</th>
-            </tr>
-            </thead>
-            <style>
-                .greentext {
-                    color: green;
-                    font-weight: bold;
-                }
-            </style>
-            <tbody>
+            <p/>
+            <div class="pull-left">
 
-            <c:forEach items="${all_transactions}" var="aAccount">
+
+
+                <!-- When More than 10 historical transactions have occurred, the user will be able to page through
+                  the transactions by 10 transactions at a time-->
+                <c:if test="${account_pager.previous}">
+                    <a class="btn btn-default btn-sm"
+                       href="/mvc/secure/account/savings?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
+                </c:if>
+            </div>
+            <div class="pull-right">
+                <c:if test="${account_pager.next}">
+                    <a class="btn btn-default btn-sm"
+                       href="/mvc/secure/account/savings?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
+                </c:if>
+            </div>
+
+
+
+            <table class="table">
+                <thead>
                 <tr>
-                    <td><c:out value="${aAccount.date}"/></td>
-                    <td><c:out value="${aAccount.type}"/></td>
-                    <td><c:out value="${aAccount.description}"/></td>
-                    <td><c:out value="${aAccount.debit}"/></td>
-                    <td><c:out value="${aAccount.credit}"/></td>
-                    <td><c:out value="${aAccount.term}"/></td>
-                    <td><c:out value="${aAccount.tBillRate}%"/></td>
-                    <td><c:out value="${aAccount.bankRate}%"/></td>
-                    <td class="greentext"><c:out  value="+${aAccount.rateDifference}%"/></td>
-                    <td><c:out value="${aAccount.postedBalance}"/></td>
-                    <td><c:out value="${aAccount.availableBalance}"/></td>
-                    <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
-                    <td><a href="/mvc/secure/user/account/savings/delete?id=<c:out value="${aAccount.id}"/>">X </a>
-                    </c:if>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Debit (-)</th>
+                    <th>Credit (+)</th>
+                    <th>Term</th>
+                    <th>Return</th>
+                    <th>Bank Return</th>
+                    <th>Return increase</th>
+                    <th>Posted Balance</th>
+                    <th>Available Balance</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <style>
+                    .greentext {
+                        color: green;
+                        font-weight: bold;
+                    }
+                </style>
+                <tbody>
 
-    </div></center>
+                <c:forEach items="${all_transactions}" var="aAccount">
+                    <tr>
+                        <td><c:out value="${aAccount.date}"/></td>
+                        <td><c:out value="${aAccount.type}"/></td>
+                        <td><c:out value="${aAccount.description}"/></td>
+                        <td><c:out value="${aAccount.debit}"/></td>
+                        <td><c:out value="${aAccount.credit}"/></td>
+                        <td><c:out value="${aAccount.term}"/></td>
+                        <td><c:out value="${aAccount.tBillRate}%"/></td>
+                        <td><c:out value="${aAccount.bankRate}%"/></td>
+                        <td class="greentext"><c:out value="+${aAccount.rateDifference}%"/></td>
+                        <td><c:out value="${aAccount.postedBalance}"/></td>
+                        <td><c:out value="${aAccount.availableBalance}"/></td>
+
+
+
+                        <!-- If given permission, the logged-in User can make changes to their transaction history
+                        when the key below is enabled -->
+                        <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
+                        <td><a href="/mvc/secure/user/account/savings/delete?id=<c:out value="${aAccount.id}"/>">X </a>
+                            </c:if>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+
+        </div>
+    </center>
 
 </div>
 
@@ -149,42 +176,53 @@
         Total Accounts: <c:out value="${account_pager.totalPages}"/>
     </div>
 
+
+
+    <!-- If given permission, the logged-in User can make changes to their transaction history when the key below is
+     enabled -->
     <c:if test="${user_loggedin_perms.containsKey('USER_EDIT_TRANSACTIONS')}">
-    <center><div>
-        Legend: Remove Transaction "X"
+        <center>
+            <div>
+                Legend: Remove Transaction "X"
 
 
-    </div></center>
+            </div>
+        </center>
 
 
-    <h4>Add Transactions</h4>
-    <c:if test="${error_message != null}">
-        <div class="alert alert-danger"><c:out value="${error_message}"/></div>
-    </c:if>
+        <h4>Add Transactions</h4>
+        <c:if test="${error_message != null}">
+            <div class="alert alert-danger"><c:out value="${error_message}"/></div>
+        </c:if>
 
-    <form method="post" action="/mvc/secure/user/account/savings/add">
-        <table class="table">
+        <form method="post" action="/mvc/secure/user/account/savings/add">
+            <table class="table">
                 <input type="hidden" name="id" value="<c:out value="${id}"/>"/>
 
 
-            <tr><td><input type="date" name="date" placeholder="Date:  yyyy/mm/dd "></td>
-                <td><input type="text" name="type" placeholder="Type: Transfer"></td>
-                <td><input type="text" name="description" placeholder="Description "></td>
-                <td><input type="text" name="debit" placeholder="Debit (-) "></td>
-                <td><input type="text" name="credit" placeholder="Credit (+) "></td></tr>
-            <tr><td><input type="text" name="term" placeholder="Term:  3 Months "></td>
-                <td><input type="text" name="tBillReturn" placeholder="Return "></td>
-                <td><input type="text" name="bankReturn" placeholder="Bank Return: 0.01 "></td>
-                <td><input type="text" name="returnIncrease" placeholder="Return Increase "></td>
-                <td><input type="text" name="postedBalance" placeholder="Posted Balance "></td>
-                <td><input type="text" name="availableBalance" placeholder="Available Balance "></td></tr>
-        </table>
-        <div>
-            <center><input type="submit" name="Save"/></center>
-        </div>
-    </form>
+                <tr>
+                    <td><input type="date" name="date" placeholder="Date "></td>
+                    <td><input type="text" name="type" placeholder="Type: Transfer"></td>
+                    <td><input type="text" name="description" placeholder="Description "></td>
+                    <td><input type="text" name="debit" placeholder="Debit (-) "></td>
+                    <td><input type="text" name="credit" placeholder="Credit (+) "></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="term" placeholder="Term:  3 Months "></td>
+                    <td><input type="text" name="tBillReturn" placeholder="Return "></td>
+                    <td><input type="text" name="bankReturn" placeholder="Bank Return: 0.01 "></td>
+                    <td><input type="text" name="returnIncrease" placeholder="Return Increase "></td>
+                    <td><input type="text" name="postedBalance" placeholder="Posted Balance "></td>
+                    <td><input type="text" name="availableBalance" placeholder="Available Balance "></td>
+                </tr>
+            </table>
+            <div>
+                <center><input type="submit" name="Save"/></center>
+            </div>
+        </form>
     </c:if>
-    <p>&copy; 2016 Company, Inc.</p>
+
+    <p>&copy; 2016 Click Here For Money, Inc.</p>
 </footer>
 
 </div> <!-- /container -->

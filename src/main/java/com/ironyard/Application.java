@@ -16,6 +16,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 /**
  * Created by nathanielellsworth on 11/4/16.
  */
+
 @EnableSwagger2
 @SpringBootApplication
 public class Application {
@@ -42,7 +43,7 @@ public class Application {
     }
 
     @Bean
-    public Docket SavingsApi() {
+    public Docket savingsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("savings-api")
                 .apiInfo(apiInfoAccounts())
@@ -78,7 +79,7 @@ public class Application {
     }
     private ApiInfo apiInfoPermissions() {
         return new ApiInfoBuilder()
-                .title("This is our API")
+                .title("Permissions Api")
                 .description("Make all permissions here. Authorization Key:  M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh8Z")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")
@@ -89,7 +90,7 @@ public class Application {
     }
     private ApiInfo apiInfoUser() {
         return new ApiInfoBuilder()
-                .title("This is our API")
+                .title("User Api")
                 .description("Do all USER things here. Authorization Key:  M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh8Z")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")
@@ -100,7 +101,7 @@ public class Application {
     }
     private ApiInfo apiInfoAccounts() {
         return new ApiInfoBuilder()
-                .title("This is our API")
+                .title("Accounts Api")
                 .description("Do all Account things here. Authorization Key:  M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh8Z")
                 .termsOfServiceUrl("http://theironyard.com")
                 .contact("Nate Ellsworth")

@@ -8,8 +8,17 @@ import java.io.IOException;
 /**
  * Created by nathanielellsworth on 11/24/16.
  */
+
 public class RestSecurityFilter implements javax.servlet.Filter{
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {

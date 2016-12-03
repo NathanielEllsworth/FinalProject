@@ -23,19 +23,26 @@ import java.util.HashSet;
  *
  * Created by nathanielellsworth on 11/14/16.
  */
+
 @Controller
 @RequestMapping(path = "/mvc/secure/admin")
 public class MvcAdminController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+
+
     @Autowired
     private TheUserRepository userRepository;
-
-
     @Autowired
     private PermissionRepository permissionRepository;
 
+
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public String list(Model model) {
         String destination = "/secure/admin_user";
@@ -43,6 +50,12 @@ public class MvcAdminController {
         return destination;
     }
 
+    /**
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "user/edit", method = RequestMethod.GET)
     public String edit(@RequestParam("id") Long id,
                        Model model) {
@@ -53,6 +66,7 @@ public class MvcAdminController {
         for(Permission p: editMe.getAbilities()){
             permsForThisUser.put(p.getKey(), p.getKey());
         }
+
         model.addAttribute("edit_user_perms", permsForThisUser);
         model.addAttribute("username", editMe.getUsername());
         model.addAttribute("displayname", editMe.getDisplayName());
@@ -60,10 +74,16 @@ public class MvcAdminController {
         model.addAttribute("password2", editMe.getPassword());
         model.addAttribute("id", editMe.getId());
         addUserAndPermList(model);
-
         return destination;
     }
 
+    /**
+     *
+     * @param id
+     * @param model
+     * @param req
+     * @return
+     */
     @RequestMapping(value = "user/delete", method = RequestMethod.GET)
     public String delete(@RequestParam("id") Long id, Model model, HttpServletRequest req) {
         String destination = "/secure/admin_user";
@@ -80,6 +100,17 @@ public class MvcAdminController {
         return destination;
     }
 
+    /**
+     *
+     * @param id
+     * @param username
+     * @param displayname
+     * @param password
+     * @param password2
+     * @param perms
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "user/save", method = RequestMethod.POST)
     public String saveUser(@RequestParam("id") Long id,
                            @RequestParam("username") String username,
@@ -140,13 +171,14 @@ public class MvcAdminController {
                 }
                 userRepository.save(editMe);
             }
-
         }
-
         return destination;
     }
 
-
+    /**
+     *
+     * @param model
+     */
     private void addUserAndPermList(Model model){
         Iterable<TheUser> users = userRepository.findAll();
         model.addAttribute("users", users);

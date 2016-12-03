@@ -8,8 +8,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 /**
  * Created by nathanielellsworth on 11/14/16.
  */
+
 public interface AccountRepository extends PagingAndSortingRepository<Account, Long>{
 
     Page<Account> findByUserId(long userId, Pageable pageable);
-
 }

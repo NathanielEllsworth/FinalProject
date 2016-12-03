@@ -14,6 +14,7 @@ import sun.misc.BASE64Encoder;
 /**
  * Created by nathanielellsworth on 11/4/16.
  */
+
 public class SecurityUtils {
 
 
@@ -50,6 +51,11 @@ public class SecurityUtils {
         return new BASE64Encoder().encode(hasil);
     }
 
+    /**
+     *
+     * @param decryptMe
+     * @return
+     */
     public static String decrypt(String decryptMe) {
         String decrypted = null;
 
@@ -66,6 +72,11 @@ public class SecurityUtils {
     }
 
 
+    /**
+     *
+     * @param key
+     * @return
+     */
     public static boolean isValidKey(String key)  {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         Calendar oneYearAgo = Calendar.getInstance();

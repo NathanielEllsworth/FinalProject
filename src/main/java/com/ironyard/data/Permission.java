@@ -12,10 +12,12 @@ import javax.persistence.Id;
  *
  * Created by nathanielellsworth on 11/4/16.
  */
+
 @Entity
 public class Permission {
     private String key;
     private String description;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

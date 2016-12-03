@@ -10,8 +10,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
  *
  * Created by nathanielellsworth on 11/12/16.
  */
+
 @Configuration
 public class DefaultView extends WebMvcConfigurerAdapter {
+
 
     @Override
     public void addViewControllers( ViewControllerRegistry registry ){

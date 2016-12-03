@@ -72,7 +72,7 @@ public class TheUserRepositoryTest {
     public void testFindByUsernameAndPass() throws Exception{
 
         // create user
-        TheUser tstUser = new TheUser("nate", "password", "Nate Ellsworth");
+        TheUser tstUser = new TheUser("Nate Ellsworth", "password", "nate");
         userRepo.save(tstUser);
 
         // find by user pass

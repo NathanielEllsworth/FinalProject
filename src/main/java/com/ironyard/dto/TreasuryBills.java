@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * Created by nathanielellsworth on 11/4/16.
  */
+
 public class TreasuryBills {
 
     @JsonProperty(value = "securityTerm")
@@ -15,13 +16,11 @@ public class TreasuryBills {
 
 
     @JsonProperty(value = "issueDate")
-    private String issueDate;                   // MM/dd/yyyy
+    private String issueDate;
 
 
     @JsonProperty(value = "highInvestmentRate")         //rate of return
     private String highInvestmentRate;
-
-
 
 
     public String getSecurityTerm() {

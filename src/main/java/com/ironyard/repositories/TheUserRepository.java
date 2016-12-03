@@ -8,8 +8,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * Created by nathanielellsworth on 11/12/16.
  */
+
 public interface TheUserRepository extends PagingAndSortingRepository<TheUser, Long>{
 
     TheUser findByUsernameAndPassword(String username, String password);
-
 }

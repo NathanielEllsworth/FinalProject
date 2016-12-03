@@ -2,22 +2,14 @@ package com.ironyard.controller.mvc;
 
 import com.ironyard.data.Permission;
 import com.ironyard.data.TheUser;
-import com.ironyard.dto.AccountPager;
-import com.ironyard.dto.TreasuryBills;
 import com.ironyard.repositories.TheUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 
@@ -27,14 +19,25 @@ import java.util.HashMap;
  *
  * Created by nathanielellsworth on 11/12/16.
  */
+
 @Controller
 @RequestMapping(path = "/mvc/open")
 public class MvcLoginController {
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+
 
     @Autowired
     private TheUserRepository userRepository;
 
+
+    /**
+     *
+     * @param password
+     * @param username
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam(value = "password", required = false) String password,
                         @RequestParam(value = "username", required = false) String username,
@@ -59,6 +62,11 @@ public class MvcLoginController {
         return destination;
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         String destination = "/open/login";
@@ -69,33 +77,5 @@ public class MvcLoginController {
         request.getSession().invalidate();
         return destination;
     }
-
-
-//    @RequestMapping(value = "all", method = RequestMethod.GET)
-//    public String OtherAccounts(@RequestParam(value = "page", required = false) Integer page,
-//                                Model model, HttpServletRequest request){
-//
-//
-//        // send them to the home page
-//        RestTemplate restTemplate = new RestTemplate();
-//        TreasuryBills[] tbills = restTemplate.getForObject("http://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill" , TreasuryBills[].class);
-//
-//        if(page == null){
-//            page = 0;
-//        }
-//        Sort s = new Sort(Sort.Direction.DESC, "issueDate");
-//        PageRequest pr = new PageRequest(page, 10, s);
-//        Page<TreasuryBills> aPageOfTreasuryBills = treasuryRepository.findAll(pr);
-//
-//        //Page<TreasuryBills> aPageOfTreasuryBills = JsonPath.from("http://www.treasurydirect.gov/TA_WS/securities/auctioned?format=json&type=Bill").get("issueDate[0]");
-//        AccountPager ap = new AccountPager(page, aPageOfTreasuryBills);
-//
-//
-//        System.out.println("size of tbills" + tbills.length);
-//        model.addAttribute("treasury_pager", ap);
-//        model.addAttribute("aTBill", tbills);
-//        return "/secure/treasury";
-//    }
-
 
 }

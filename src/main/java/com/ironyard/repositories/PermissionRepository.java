@@ -6,6 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 /**
  * Created by nathanielellsworth on 11/14/16.
  */
+
 public interface PermissionRepository extends PagingAndSortingRepository <Permission, Long>{
 
 }

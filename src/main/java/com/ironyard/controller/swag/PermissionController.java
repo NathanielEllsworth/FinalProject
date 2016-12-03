@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *  Get yo Swagger on bruh!
  *
  * Created by nathanielellsworth on 11/14/16.
  */
@@ -21,37 +20,56 @@ public class PermissionController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+
+
     @Autowired
     private PermissionRepository permRepo;
 
 
-
+    /**
+     *
+     * @param aPermission
+     * @return
+     */
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public Permission save(@RequestBody Permission aPermission){
         permRepo.save(aPermission);
         return permRepo.findOne(aPermission.getId());
     }
 
-
-
+    /**
+     *
+     * @param aPermission
+     * @return
+     */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public Permission update(@RequestBody Permission aPermission){
         permRepo.save(aPermission);
         return permRepo.findOne(aPermission.getId());
     }
 
-
+    /**
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public Permission show(@PathVariable Long id){ return permRepo.findOne(id);}
 
 
-
+    /**
+     *
+     * @param page
+     * @param size
+     * @param sortby
+     * @param direction
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public Iterable<Permission> listAll(@RequestParam(value = "page") Integer page,
                                         @RequestParam("size") Integer size,
                                         @RequestParam(value = "sortby", required = false) String sortby,
                                         @RequestParam(value = "dir", required = false) Sort.Direction direction){
-
 
         //Sort default
         if (sortby == null){
@@ -68,7 +86,11 @@ public class PermissionController {
     }
 
 
-
+    /**
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
     public Permission delete(@PathVariable Long id){
         Permission deleted = permRepo.findOne(id);
@@ -77,13 +99,16 @@ public class PermissionController {
     }
 
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     @ExceptionHandler(value = Throwable.class)
     public String nfeHandler(Throwable e){
         log.error("Error in Permission Controller", e);
         return("Something went wrong (pc)");
     }
-
-
 
 
 }

@@ -62,11 +62,23 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
+                <!-- Login Automatically sends the Authenticated User to their 'Home Page' -->
                 <li role="presentation"><a href="/mvc/secure/account/savings">Home</a></li>
+
+
+                <!-- The Treasury Bills Navigation link sends the User to the Live Data Stream
+                 of current US Treasury Bills directly from the United States Treasury Department -->
                 <li role="presentation"><a href="/mvc/secure/account/all">Treasury Bills</a></li>
+
+
+                <!-- Depending on the privileges given to a User, the key below will grant or deny a user access
+                  of enrolling or deleting other individuals into the group plan -->
                 <c:if test="${user_loggedin_perms.containsKey('ADMIN_ADD_USER')}">
                     <li role="presentation"><a href="/mvc/secure/admin/users">Users</a></li>
                 </c:if>
+
+
+                <!-- This Link Automatically Signs the User out and forwards them back to the Login page -->
                 <li role="presentation"><a href="/mvc/open/logout">Logout</a></li>
             </ul>
         </nav>
@@ -76,21 +88,6 @@
         <div class="col-lg-10">
             <h4>View Current and Recently Issued Treasury Bills</h4>
 
-            <p/>
-            <p/>
-            <p/>
-            <div class="pull-left">
-                <c:if test="${account_pager.previous}">
-                    <a class="btn btn-default btn-sm"
-                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
-                </c:if>
-            </div>
-            <div class="pull-right">
-                <c:if test="${account_pager.next}">
-                    <a class="btn btn-default btn-sm"
-                       href="/mvc/secure/account/all?page=<c:out value="${account_pager.nextPage}"/>">Next</a>
-                </c:if>
-            </div>
 
             <table class="table">
 
@@ -102,6 +99,10 @@
                 </th>
                 <th><a href='https://ycharts.com/indicators/1_month_treasury_rate' type="submit"
                        class="btn btn-info" role="button" target="_new">View Historical Data</a></th>
+
+
+                <!-- Depending on the privileges given to a User, the key below will grant or deny the direct link
+                 to the United States Treasury Department's Treasury Account's and holdings-->
                 <c:if test="${user_loggedin_perms.containsKey('USER_BUY_TBILLS')}">
                     <th><a href='http://www.treasurydirect.gov/indiv/TDTour/open_account.htm' type="submit"
                            class="btn btn-info" role="button" target="_new">Open a Treasury Account</a></th>
@@ -127,6 +128,10 @@
 
 
     </div> <!-- /container -->
+
+    <footer class="footer">
+        <p>&copy; 2016 Click Here For Money, Inc.</p>
+    </footer>
 
 </div>
 </body>

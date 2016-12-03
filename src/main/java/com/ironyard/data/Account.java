@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.sql.Date;
 
 /**
@@ -13,6 +11,7 @@ import java.sql.Date;
  *
  * Created by nathanielellsworth on 11/4/16.
  */
+
 @Entity
 public class Account {
 
@@ -29,11 +28,6 @@ public class Account {
     private double rateDifference; //percent % difference between -treasury rate-  and -bank rate-
     private double postedBalance;            //**posted balance is the same as Balance**
     private double availableBalance;
-
-
-    //BigDecimal bank = new BigDecimal(bankRate, MathContext.DECIMAL64);
-
-    // in test BigDecimal.valueOf(0.00083);
 
 
     @Id
@@ -58,11 +52,16 @@ public class Account {
         this.availableBalance = availableBalance;
     }
 
+
+//_________________________________________________________________________
+
+
     public long getUserId() {return userId;}
 
     public void setUserId(long userId) {this.userId = userId;}
 
 
+//_________________________________________________________________________
 
 
     public String getTitle() {
@@ -167,11 +166,5 @@ public class Account {
         this.id = id;
     }
 
-//    public BigDecimal getBank() {
-//        return bank;
-//    }
-//
-//    public void setBank(BigDecimal bank) {
-//        this.bank = bank;
-//    }
+
 }

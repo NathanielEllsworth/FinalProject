@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
  *
  * Created by nathanielellsworth on 11/14/16.
  */
+
 public class AccountPager {
     private int currentPage;
     private int previousPage;
@@ -74,4 +75,5 @@ public class AccountPager {
     public boolean isPrevious(){
         return previousPage >= 0;
     }
+
 }

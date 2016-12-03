@@ -17,12 +17,8 @@ public class TheUser {
     private String displayName;
 
 
-
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Permission> abilities;
-
 
     public Set<Permission> getAbilities() {
         return abilities;
@@ -31,6 +27,7 @@ public class TheUser {
     public void setAbilities(Set<Permission> abilities) {
         this.abilities = abilities;
     }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

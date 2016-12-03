@@ -17,14 +17,21 @@ import java.util.List;
  *
  * Created by nathanielellsworth on 11/4/16.
  */
+
 @RestController
 @RequestMapping(path = "/rest/treasuryBills")
 public class TreasuryBillsController {
 
 
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 
+    /**
+     *
+     * @param filter
+     * @return
+     */
     @RequestMapping(value = "/mvc/treasury", method = RequestMethod.GET)
     public Iterable<TreasuryBills> list(@RequestParam(value = "filter", required = false) String filter) {
         log.debug("Request to list matches played.");
@@ -49,6 +56,5 @@ public class TreasuryBillsController {
             filteredList = foundAllList;
         }
         return filteredList;
-
     }
 }
