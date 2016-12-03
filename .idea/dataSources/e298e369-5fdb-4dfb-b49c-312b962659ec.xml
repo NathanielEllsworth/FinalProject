@@ -8,8 +8,8 @@
     <schema id="2" parent="1" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>8471</introspection-state-number>
-      <introspection-timestamp>2016-12-03.13:41:09.780</introspection-timestamp>
+      <introspection-state-number>9364</introspection-state-number>
+      <introspection-timestamp>2016-12-03.17:23:52.338</introspection-timestamp>
     </schema>
     <schema id="3" parent="1" name="pg_catalog">
       <object-id>11</object-id>
@@ -30,12 +30,12 @@
       <object-id>16393</object-id>
     </schema>
     <sequence id="9" parent="2" name="hibernate_sequence">
-      <object-id>27717</object-id>
-      <state-number>8427</state-number>
+      <object-id>28597</object-id>
+      <state-number>9358</state-number>
     </sequence>
     <table id="10" parent="2" name="account">
-      <object-id>27719</object-id>
-      <state-number>8471</state-number>
+      <object-id>28599</object-id>
+      <state-number>9359</state-number>
     </table>
     <table id="11" parent="2" name="accounts">
       <object-id>18594</object-id>
@@ -90,8 +90,8 @@
       <state-number>2124</state-number>
     </table>
     <table id="24" parent="2" name="permission">
-      <object-id>27727</object-id>
-      <state-number>8432</state-number>
+      <object-id>28607</object-id>
+      <state-number>9363</state-number>
     </table>
     <table id="25" parent="2" name="player">
       <object-id>18690</object-id>
@@ -118,12 +118,12 @@
       <state-number>1631</state-number>
     </table>
     <table id="31" parent="2" name="the_user">
-      <object-id>27735</object-id>
-      <state-number>8433</state-number>
+      <object-id>28615</object-id>
+      <state-number>9364</state-number>
     </table>
     <table id="32" parent="2" name="the_user_abilities">
-      <object-id>27743</object-id>
-      <state-number>8433</state-number>
+      <object-id>28623</object-id>
+      <state-number>9364</state-number>
     </table>
     <table id="33" parent="2" name="the_user_approval">
       <object-id>18652</object-id>
@@ -158,78 +158,71 @@
       <state-number>1800</state-number>
     </table>
     <column id="41" parent="10" name="id">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
     <column id="42" parent="10" name="available_balance">
-      <state-number>8464</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="43" parent="10" name="bank_rate">
-      <state-number>8466</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="44" parent="10" name="credit">
-      <state-number>8467</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="45" parent="10" name="date">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <data-type>date|0</data-type>
     </column>
     <column id="46" parent="10" name="debit">
-      <state-number>8468</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="47" parent="10" name="description">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="48" parent="10" name="posted_balance">
-      <state-number>8469</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="49" parent="10" name="rate_difference">
-      <state-number>8470</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="50" parent="10" name="t_bill_rate">
-      <state-number>8471</state-number>
-      <mandatory>1</mandatory>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="51" parent="10" name="term">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="52" parent="10" name="title">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="53" parent="10" name="type">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="54" parent="10" name="user_id">
-      <state-number>8428</state-number>
+      <state-number>9359</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
     <index id="55" parent="10" name="account_pkey">
-      <object-id>27725</object-id>
+      <object-id>28605</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
     <key id="56" parent="10" name="account_pkey">
-      <object-id>27726</object-id>
+      <object-id>28606</object-id>
       <columns>id</columns>
       <underlying-index>account_pkey</underlying-index>
       <primary>1</primary>
@@ -654,26 +647,26 @@ favs_id</columns>
       <primary>1</primary>
     </key>
     <column id="137" parent="24" name="id">
-      <state-number>8429</state-number>
+      <state-number>9360</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
     <column id="138" parent="24" name="description">
-      <state-number>8429</state-number>
+      <state-number>9360</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="139" parent="24" name="key">
-      <state-number>8429</state-number>
+      <state-number>9360</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <index id="140" parent="24" name="permission_pkey">
-      <object-id>27733</object-id>
+      <object-id>28613</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
     <key id="141" parent="24" name="permission_pkey">
-      <object-id>27734</object-id>
+      <object-id>28614</object-id>
       <columns>id</columns>
       <underlying-index>permission_pkey</underlying-index>
       <primary>1</primary>
@@ -878,67 +871,67 @@ favs_id</columns>
       <primary>1</primary>
     </key>
     <column id="181" parent="31" name="id">
-      <state-number>8430</state-number>
+      <state-number>9361</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
     <column id="182" parent="31" name="display_name">
-      <state-number>8430</state-number>
+      <state-number>9361</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="183" parent="31" name="password">
-      <state-number>8430</state-number>
+      <state-number>9361</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="184" parent="31" name="username">
-      <state-number>8430</state-number>
+      <state-number>9361</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <index id="185" parent="31" name="the_user_pkey">
-      <object-id>27741</object-id>
+      <object-id>28621</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
     <key id="186" parent="31" name="the_user_pkey">
-      <object-id>27742</object-id>
+      <object-id>28622</object-id>
       <columns>id</columns>
       <underlying-index>the_user_pkey</underlying-index>
       <primary>1</primary>
     </key>
     <column id="187" parent="32" name="the_user_id">
-      <state-number>8431</state-number>
+      <state-number>9362</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
     <column id="188" parent="32" name="abilities_id">
-      <state-number>8431</state-number>
+      <state-number>9362</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
     <index id="189" parent="32" name="the_user_abilities_pkey">
-      <object-id>27746</object-id>
+      <object-id>28626</object-id>
       <columns>the_user_id
 abilities_id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
     <key id="190" parent="32" name="the_user_abilities_pkey">
-      <object-id>27747</object-id>
+      <object-id>28627</object-id>
       <columns>the_user_id
 abilities_id</columns>
       <underlying-index>the_user_abilities_pkey</underlying-index>
       <primary>1</primary>
     </key>
     <foreign-key id="191" parent="32" name="fkjkilm0iw7o5ktwdyj9bo2jddx">
-      <object-id>27753</object-id>
+      <object-id>28633</object-id>
       <columns>the_user_id</columns>
       <ref-key>~.the_user.the_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
     <foreign-key id="192" parent="32" name="fkq5r7jqqqp5cmlix07rfyi6xiu">
-      <object-id>27748</object-id>
+      <object-id>28628</object-id>
       <columns>abilities_id</columns>
       <ref-key>~.permission.permission_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>

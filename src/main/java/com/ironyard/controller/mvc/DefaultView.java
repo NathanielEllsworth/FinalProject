@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 /**
  * If I start up with the "localhost:8080" instead of crashing this will redirect on startup to the login.jsp
  *
+ * (it looks for the slash "/" and forwards to the login.jsp)
+ *
  * Created by nathanielellsworth on 11/12/16.
  */
 

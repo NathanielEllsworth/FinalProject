@@ -1,6 +1,6 @@
 {
-  "name": "Spring Boot Demo",
-  "description": "This is a small demo application for showing how to run a Spring Boot application on Heroku.",
+  "name": "Click Here For Money",
+  "description": "This app is for showing the return difference between a savings account and a treasury bill.",
   "website": "http://",
   "repository": "https://github.com/NathanielEllsworth",
   "image": "heroku/java",

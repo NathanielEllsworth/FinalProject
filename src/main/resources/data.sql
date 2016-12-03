@@ -28,7 +28,6 @@ INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debi
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type, user_id) VALUES (-22, '-', '0.005%', '-', '2016-08-15', '$10,000', 'EB to US Treasury Dept', '$121,000.00', '+10,700%', '0.54%', '6 Months', 'Savings', 'Transfer', -2);
 INSERT INTO public.account (id, available_balance, bank_rate, credit, date, debit, description, posted_balance, rate_difference, t_bill_rate, term, title, type, user_id) VALUES (-23, '$10,000.00', '-', '$10,000.00', '2016-08-15', '-', 'EB from Checking #2694317712', '-', '-', '-', '-', 'Savings', 'Transfer', -2);
 
-
 INSERT INTO public.permission (id, description, key) VALUES (-1, 'Admin User (ability to add other users)', 'ADMIN_ADD_USER');
 INSERT INTO public.permission (id, description, key) VALUES (-2, 'Allow Treasury Bill Purchases', 'USER_BUY_TBILLS');
 INSERT INTO public.permission (id, description, key) VALUES (-3, 'Allow User to Edit Transactions', 'USER_EDIT_TRANSACTIONS');

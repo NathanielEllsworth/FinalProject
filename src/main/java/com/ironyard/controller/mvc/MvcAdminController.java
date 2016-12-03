@@ -91,7 +91,7 @@ public class MvcAdminController {
         // make sure user not trying to delete currently logged in user
         TheUser usr = (TheUser)req.getSession().getAttribute("user");
         if(usr.getId() == id){
-            model.addAttribute("error_message", "Can delete currently logged in user!");
+            model.addAttribute("error_message", "Can not delete currently logged in user!");
         }else{
             // just delete
             userRepository.delete(id);

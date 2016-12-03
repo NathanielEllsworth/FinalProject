@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>test</groupId>
     <artifactId>spring</artifactId>
-    <packaging>war</packaging>
+    <!--<packaging>war</packaging>-->
 
     <!-- we are extending from this project POM which means we get
      everything that this pom has (inheritance) -->
@@ -26,11 +26,21 @@
         </dependency>
 
         <!-- database -->
+
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.193</version>
+        </dependency>
+
+
+        <!--<dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>RELEASE</version>
-        </dependency>
+        </dependency>-->
+
         <!-- auto config for spring stuff -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -114,6 +124,8 @@
 
 
     <build>
+        <!-- this will create the jar file app.jar (look in proc file) -->
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
