@@ -11,6 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TreasuryBills {
 
+    /**
+     * Mapped the Treasury bill class to the Json mapping properties.
+     * I can call my properties whatever I want and map them to whatever I want but for simplicity
+     * the names are the same.
+     */
     @JsonProperty(value = "securityTerm")
     private String securityTerm;
 

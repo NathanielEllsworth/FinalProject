@@ -2,7 +2,7 @@ package com.ironyard.controller.mvc;
 
 import com.ironyard.data.Account;
 import com.ironyard.data.TheUser;
-import com.ironyard.dto.AccountPager;
+import com.ironyard.dto.TransactionPager;
 import com.ironyard.dto.TreasuryBills;
 import com.ironyard.repositories.AccountRepository;
 import com.ironyard.repositories.TheUserRepository;
@@ -63,7 +63,8 @@ public class MvcAccountController {
 
     /**
      *
-     * @param page
+     * @param page on the Url line the parameter must be called 'page' (but it's not required, the request
+     *             can come in and be null)
      * @param model
      * @param request
      * @return
@@ -81,11 +82,27 @@ public class MvcAccountController {
         if(page == null){
             page = 0;
         }
+        //Sort by descending direction and sort by date because that is the property on my account
         Sort s = new Sort(Sort.Direction.DESC, "date");
+        //Sending in my page request and then I'm hardcoding the page amount to 10 transactions per page
         PageRequest pr = new PageRequest(page, 10, s);
+        // So now the 'pr' that I made represents: exactly what page I want, how many per page and how I
+        // want it sorted
         Page<Account> aPageOfTransactions =  accountRepository.findByUserId(usrId,pr);
+        // Using Spring's class 'Page' implements Iterable but you get a lot more access to it by calling it a page object
+        // Bottom line the Page object implements Iterable
 
-        AccountPager ap = new AccountPager(page ,aPageOfTransactions);
+        int previousPage = page -1;
+        int nextPage = page + 1;
+
+        // check to see if there really is a next page
+        if(nextPage >= aPageOfTransactions.getTotalPages()){
+            //is the next page greater than or equal too the total number of pages
+            nextPage = -1;
+        }
+
+        TransactionPager ap = new TransactionPager(page ,previousPage, nextPage,
+                (int) aPageOfTransactions.getTotalElements(),aPageOfTransactions.getTotalPages());
 
         // put them in a model
         model.addAttribute("all_transactions", aPageOfTransactions.iterator());

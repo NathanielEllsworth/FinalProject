@@ -17,8 +17,11 @@ import java.net.URL;
 public class TreasuryBillsTest {
 
 
-    // quick status code test
 
+    /**
+     *quick status code test
+     * @throws IOException when the response code to the US Treasury is returned
+     */
     @Test
     public void addQuickTreasuryBillTest() throws IOException{
 

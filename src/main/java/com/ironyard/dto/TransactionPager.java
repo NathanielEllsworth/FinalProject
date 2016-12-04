@@ -1,6 +1,5 @@
 package com.ironyard.dto;
 
-import org.springframework.data.domain.Page;
 
 /**
  * for sorting through accounts wired in and opened in the app.
@@ -10,22 +9,21 @@ import org.springframework.data.domain.Page;
  * Created by nathanielellsworth on 11/14/16.
  */
 
-public class AccountPager {
+public class TransactionPager {
     private int currentPage;
     private int previousPage;
     private int nextPage;
     private int totalPages;
-    private int totalAccounts;
+    private int totalTransactions;
 
+    //Design change, moved paging logic to MvcAccountController (Lines 94 to 103)
 
-    public AccountPager(Integer page, Page aPageOfAccounts) {
-        this.previousPage = page - 1;
-        this.nextPage = page + 1;
-
-        // check to see if there really is a next page
-        if(nextPage >= aPageOfAccounts.getTotalPages()){
-            nextPage = -1;
-        }
+    public TransactionPager(int currentPage, int previousPage, int nextPage, int totalPages, int totalTransactions) {
+        this.currentPage = currentPage;
+        this.previousPage = previousPage;
+        this.nextPage = nextPage;
+        this.totalPages = totalPages;
+        this.totalTransactions = totalTransactions;
     }
 
     public int getTotalPages() {
@@ -36,12 +34,12 @@ public class AccountPager {
         this.totalPages = totalPages;
     }
 
-    public int getTotalAccounts() {
-        return totalAccounts;
+    public int getTotalTransactions() {
+        return totalTransactions;
     }
 
-    public void setTotalAccounts(int totalAccounts) {
-        this.totalAccounts = totalAccounts;
+    public void setTotalTransactions(int totalTransactions) {
+        this.totalTransactions = totalTransactions;
     }
 
     public int getCurrentPage() {

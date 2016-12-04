@@ -13,6 +13,10 @@ import org.junit.Assert;
 @RunWith(SpringRunner.class)
 public class SecurityUtilsTest {
 
+    /**
+     * Run this test to generate an authentication key
+     * @throws Exception
+     */
     @Test
     public void authenticatedTokenShouldBeValid() throws Exception {
         String token = null;
@@ -25,6 +29,10 @@ public class SecurityUtilsTest {
         }
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void fakeTokenShouldBeDenied() throws Exception{
         String token = null;

@@ -173,8 +173,8 @@
 
 <footer class="footer">
     <div class="pull-center">
-        Total Pages: <c:out value="${account_pager.currentPage}"/>
-        Total Accounts: <c:out value="${account_pager.totalPages}"/>
+        Current Page: <c:out value="${account_pager.currentPage}"/>
+        Total Transactions: <c:out value="${account_pager.totalPages}"/>
     </div>
 
 

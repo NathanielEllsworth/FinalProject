@@ -25,7 +25,7 @@ public class Account {
     private String term;                           // only for savings accounts
     private String tBillRate;                  // only for savings accounts
     private String bankRate;
-    private String rateDifference; //percent % difference between -treasury rate-  and -bank rate-
+    private String rateDifference; //percent % difference between -treasury rate-  and  -bank rate-
     private String postedBalance;            //**posted balance is the same as Balance**
     private String availableBalance;
 
