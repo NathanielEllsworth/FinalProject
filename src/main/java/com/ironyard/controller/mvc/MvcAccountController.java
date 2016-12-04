@@ -85,7 +85,7 @@ public class MvcAccountController {
         //Sort by descending direction and sort by date because that is the property on my account
         Sort s = new Sort(Sort.Direction.DESC, "date");
         //Sending in my page request and then I'm hardcoding the page amount to 10 transactions per page
-        PageRequest pr = new PageRequest(page, 10, s);
+        PageRequest pr = new PageRequest(page, 8, s);
         // So now the 'pr' that I made represents: exactly what page I want, how many per page and how I
         // want it sorted
         Page<Account> aPageOfTransactions =  accountRepository.findByUserId(usrId,pr);
@@ -101,6 +101,7 @@ public class MvcAccountController {
             nextPage = -1;
         }
 
+        //transaction pager is getting all the transactions and pages and then putting them in a model
         TransactionPager ap = new TransactionPager(page ,previousPage, nextPage,
                 (int) aPageOfTransactions.getTotalElements(),aPageOfTransactions.getTotalPages());
 

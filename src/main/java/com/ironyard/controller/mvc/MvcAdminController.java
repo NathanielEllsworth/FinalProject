@@ -40,8 +40,8 @@ public class MvcAdminController {
 
     /**
      *
-     * @param model
-     * @return
+     * @param model grab the users and put them in a list
+     * @return the list back to the admin_user.jsp
      */
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public String list(Model model) {
@@ -52,9 +52,9 @@ public class MvcAdminController {
 
     /**
      *
-     * @param id
-     * @param model
-     * @return
+     * @param id of the user to be edited
+     * @param model the added/edited attributes of the user
+     * @return the logged in user back to the admin_user.jsp page
      */
     @RequestMapping(value = "user/edit", method = RequestMethod.GET)
     public String edit(@RequestParam("id") Long id,
@@ -79,10 +79,10 @@ public class MvcAdminController {
 
     /**
      *
-     * @param id
-     * @param model
-     * @param req
-     * @return
+     * @param id of the user being deleted
+     * @param model data objects of the user
+     * @param req request the Http Servlet to get the session and attribute
+     * @return the user in the session back to admin_user.jsp if no errors were thrown
      */
     @RequestMapping(value = "user/delete", method = RequestMethod.GET)
     public String delete(@RequestParam("id") Long id, Model model, HttpServletRequest req) {
@@ -102,14 +102,14 @@ public class MvcAdminController {
 
     /**
      *
-     * @param id
-     * @param username
-     * @param displayname
-     * @param password
-     * @param password2
-     * @param perms
-     * @param model
-     * @return
+     * @param id auto generated id of the user to be saved
+     * @param username of the new user
+     * @param displayname the new user wants to use on their logged-in session
+     * @param password the user wants to use when they go to login
+     * @param password2 is a safety feature to make sure the user's new password was entered in correctly
+     * @param perms are the abilities the user will have when the new user is saved
+     * @param model the data objects of the user
+     * @return the saved user and the current user in session back to the web page admin_user.jsp
      */
     @RequestMapping(value = "user/save", method = RequestMethod.POST)
     public String saveUser(@RequestParam("id") Long id,
@@ -177,7 +177,7 @@ public class MvcAdminController {
 
     /**
      *
-     * @param model
+     * @param model the user to the permissions granted by the Admin user
      */
     private void addUserAndPermList(Model model){
         Iterable<TheUser> users = userRepository.findAll();

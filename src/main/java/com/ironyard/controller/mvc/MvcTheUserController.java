@@ -17,7 +17,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
- * This is where the User can add, delete, create and rename their different Account
+ * This is where the User can add, delete and create their Transaction History
  *
  * Created by nathanielellsworth on 11/4/16.
  */
@@ -36,9 +36,9 @@ public class MvcTheUserController {
 
     /**
      *
-     * @param id
-     * @param request
-     * @return
+     * @param id the one Transaction requested by the Http Servlet
+     * @param request the one transaction be deleted
+     * @return to the home page with the transaction deleted and the web page updated
      */
     @RequestMapping(value = "account/savings/delete", method = RequestMethod.GET)
     public String deleteTransaction(@RequestParam("id") Long id, HttpServletRequest request){
@@ -49,7 +49,7 @@ public class MvcTheUserController {
 
     /**
      *
-     * @param binder
+     * @param binder simple date format from web request to java object
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -60,19 +60,18 @@ public class MvcTheUserController {
 
     /**
      *
-     * @param date
-     * @param type
-     * @param description
-     * @param debit
-     * @param credit
-     * @param term
-     * @param tBillReturn
-     * @param bankReturn
-     * @param returnIncrease
-     * @param postedBalance
-     * @param availableBalance
-     * @param request
-     * @return
+     * @param date the transaction took place
+     * @param type of transaction it is (Transfer, Credit, .etc)
+     * @param description of the transactions purpose and the direction the funds are moving
+     * @param debit the account (-) if the funds are going out
+     * @param credit the account (+) if the funds are coming in
+     * @param term of the Treasury Bull (how long the treasury bill will be held for)
+     * @param tBillReturn The return the specified Treasury Bill will yield
+     * @param bankReturn The return the bank will yield over the same amount of time
+     * @param returnIncrease The Difference between the Treasury Bill yield and the Bank yield
+     * @param availableBalance that can be used to buy Treasury Bills
+     * @param request the Http Servlet to get the user in the sessions data
+     * @return the session back to the home page
      */
     @RequestMapping(value = "account/savings/add", method = RequestMethod.POST)
     public String addTransaction(@RequestParam("date") Date date,
@@ -84,7 +83,7 @@ public class MvcTheUserController {
                                  @RequestParam("tBillReturn") String tBillReturn,
                                  @RequestParam("bankReturn") String bankReturn,
                                  @RequestParam("returnIncrease") String returnIncrease,
-                                 @RequestParam("postedBalance") String postedBalance,
+                                 //@RequestParam("postedBalance") String postedBalance,
                                  @RequestParam("availableBalance") String availableBalance,HttpServletRequest request){
 
 
@@ -103,7 +102,7 @@ public class MvcTheUserController {
         tmpA.settBillRate(tBillReturn);
         tmpA.setBankRate(bankReturn);
         tmpA.setRateDifference(returnIncrease);
-        tmpA.setPostedBalance(postedBalance);
+        //tmpA.setPostedBalance(postedBalance);
         tmpA.setAvailableBalance(availableBalance);
         accountRepository.save(tmpA);
 

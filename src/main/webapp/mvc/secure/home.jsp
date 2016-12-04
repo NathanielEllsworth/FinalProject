@@ -128,7 +128,7 @@
                     <th>Bank Return (0.01%)</th>
                     <th>Risk-Free<br/>
                         Return Increase</th>
-                    <th>Posted Balance</th>
+                    <!--<th>Posted Balance</th>-->
                     <th>Available Balance</th>
                 </tr>
                 </thead>
@@ -151,7 +151,7 @@
                         <td><c:out value="${aAccount.tBillRate}"/></td>
                         <td><c:out value="${aAccount.bankRate}"/></td>
                         <td class="greentext"><c:out value="${aAccount.rateDifference}"/></td>
-                        <td><c:out value="${aAccount.postedBalance}"/></td>
+                        <!--<td><c:out value="${aAccount.postedBalance}"/></td>-->
                         <td><c:out value="${aAccount.availableBalance}"/></td>
 
 
@@ -213,7 +213,7 @@
                     <td><input type="text" name="tBillReturn" placeholder="Return "></td>
                     <td><input type="text" name="bankReturn" placeholder="Bank Return: 0.01 "></td>
                     <td><input type="text" name="returnIncrease" placeholder="Return Increase "></td>
-                    <td><input type="text" name="postedBalance" placeholder="Posted Balance "></td>
+                    <!--<td><input type="text" name="postedBalance" placeholder="Posted Balance "></td>-->
                     <td><input type="text" name="availableBalance" placeholder="Available Balance "></td>
                 </tr>
             </table>

@@ -6,7 +6,7 @@ import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 /**
- * If I start up with the "localhost:8080" instead of crashing this will redirect on startup to the login.jsp
+ * On the "localhost:8080" startup, this will redirect the path to the login.jsp instead of getting an error
  *
  * (it looks for the slash "/" and forwards to the login.jsp)
  *
