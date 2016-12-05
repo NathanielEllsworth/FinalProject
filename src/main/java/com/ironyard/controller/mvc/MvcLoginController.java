@@ -33,10 +33,10 @@ public class MvcLoginController {
 
     /**
      *
-     * @param password
-     * @param username
-     * @param request
-     * @return
+     * @param password used to authenticate existing user
+     * @param username the existing user's alias
+     * @param request user from user repository
+     * @return the user to the home page if authenticated, if not reload the page
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam(value = "password", required = false) String password,
@@ -64,8 +64,8 @@ public class MvcLoginController {
 
     /**
      *
-     * @param request
-     * @return
+     * @param request for the user in the current session to logout
+     * @return the user to the login page
      */
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {

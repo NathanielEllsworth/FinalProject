@@ -10,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * GO TO BED MAN! IT WILL BE HERE TOMORROW!
- * <p>
+ * SWAGGER_2 UI for the User Controller
+ *
  * Created by nathanielellsworth on 11/4/16.
  */
 
@@ -27,7 +27,7 @@ public class TheUserController {
 
 
     /**
-     *
+     * Save the User
      * @param aUser
      * @return
      */
@@ -43,7 +43,7 @@ public class TheUserController {
 
 
     /**
-     *
+     * Update the User
      * @param aUser
      * @return
      */
@@ -59,8 +59,9 @@ public class TheUserController {
 
 
     /**
-     *
-     * @param id
+     * Get the User by ID and return it
+     * @param id this isn't a parameter this is a path, I'm pulling the id off of the Path Variable.
+     *           setting the "get/{id}" equal to the "Long id"
      * @return
      */
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
@@ -74,11 +75,11 @@ public class TheUserController {
 
 
     /**
-     *
-     * @param page
-     * @param size
-     * @param sortby
-     * @param direction
+     * List the users matching the request
+     * @param page of users
+     * @param size of page (how many users are on a page)
+     * @param sortby the displayName or any other user attribute
+     * @param direction ascending or descending order
      * @return
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
@@ -108,7 +109,7 @@ public class TheUserController {
 
 
     /**
-     *
+     * Delete the specified user
      * @param id
      * @return
      */
@@ -124,7 +125,7 @@ public class TheUserController {
 
 
     /**
-     *
+     * Catch any errors from this controller
      * @param e
      * @return
      */

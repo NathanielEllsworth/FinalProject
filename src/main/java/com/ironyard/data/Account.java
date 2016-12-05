@@ -52,7 +52,9 @@ public class Account {
         this.availableBalance = availableBalance;
     }
 
+
     //_________________________________________________________________________
+        // This connects the user to the user's account
 
 
     public long getUserId() {return userId;}
@@ -167,5 +169,12 @@ public class Account {
         this.id = id;
     }
 
+
+    //when someone calls 'save' I will be able to see the attributes of that object (AccountController line 38)
+    //in the *logs*
+    @Override
+    public String toString(){
+        return String.format("(%s : %s : %s : %s : %s)", getId(), getDate(), getDebit(), getCredit(), getDescription());
+    }
 
 }

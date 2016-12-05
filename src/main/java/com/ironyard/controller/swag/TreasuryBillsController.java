@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Drag and drop!
+ * This is the rest controller for the US Treasury Bills Json data
  *
  * Created by nathanielellsworth on 11/4/16.
  */
@@ -28,7 +28,7 @@ public class TreasuryBillsController {
 
 
     /**
-     *
+     * filter list by the returning only the matches that start with the parameter's name
      * @param filter
      * @return
      */

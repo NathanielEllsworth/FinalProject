@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * The User Class is needed to link each unique individual to their respective account(s)
+ * The User Class is holds the authenticated user's login credentials
  *
  * Created by nathanielellsworth on 11/4/16.
  */

@@ -27,7 +27,7 @@ public class SecurityUtils {
     /**
      * This will generate and encrypted token that can be used with all JSON APIs.
      * Ensure the token is set as a header parameter with a key of 'x-authorization-key'
-     * <p>Example: "asldjalsdjfasdfjoasdjfadsfj123"</p>
+     * <p>Example: "M6+4hTmtBqTBNRqGSEM7JtfDlSU/qh9R"</p>
      *
      * @return a string object with the encrypted token
      * @throws Throwable

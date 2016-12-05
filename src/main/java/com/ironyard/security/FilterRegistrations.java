@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class FilterRegistrations {
 
     /**
-     *
+     * Apply RestSecurityFilter filter to any request that matches --> "/rest/*"
      * @return
      */
     @Bean
@@ -22,7 +22,7 @@ public class FilterRegistrations {
     }
 
     /**
-     *
+     * Apply MvcSecurityFilter filter to any request that matches --> "/mvc/secure/*"
      * @return
      */
     @Bean

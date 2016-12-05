@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * SWAGGER_2 UI for the Permissions Controller
  *
  * Created by nathanielellsworth on 11/14/16.
  */
@@ -27,7 +28,7 @@ public class PermissionController {
 
 
     /**
-     *
+     * Save the Permission
      * @param aPermission
      * @return
      */
@@ -38,7 +39,7 @@ public class PermissionController {
     }
 
     /**
-     *
+     * Update the Permission
      * @param aPermission
      * @return
      */
@@ -49,8 +50,9 @@ public class PermissionController {
     }
 
     /**
-     *
-     * @param id
+     * Get the permission by id and return it
+     * @param id this isn't a parameter this is a path, I'm pulling the id off of the Path Variable.
+     *           setting the "get/{id}" equal to the "Long id"
      * @return
      */
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
@@ -58,11 +60,11 @@ public class PermissionController {
 
 
     /**
-     *
-     * @param page
-     * @param size
-     * @param sortby
-     * @param direction
+     * List the permissions matching the request
+     * @param page of permissions
+     * @param size of page (how many permissions are on a page)
+     * @param sortby the key of the permission
+     * @param direction ascending or descending order
      * @return
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
@@ -87,7 +89,7 @@ public class PermissionController {
 
 
     /**
-     *
+     * Delete the specified permission
      * @param id
      * @return
      */
@@ -100,7 +102,7 @@ public class PermissionController {
 
 
     /**
-     *
+     * Catch any errors from this controller
      * @param e
      * @return
      */

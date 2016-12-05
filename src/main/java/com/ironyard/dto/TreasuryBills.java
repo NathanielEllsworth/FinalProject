@@ -50,6 +50,7 @@ public class TreasuryBills {
     public void setHighInvestmentRate(String highInvestmentRate) {this.highInvestmentRate = highInvestmentRate;}
 
 
+    //added a toString method to help with logging
     @Override
     public String toString(){return String.format("( %s : %s : %s)", getIssueDate(), getSecurityTerm(), getHighInvestmentRate());}
 

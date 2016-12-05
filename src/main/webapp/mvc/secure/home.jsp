@@ -99,10 +99,10 @@
 
 
 
-                <!-- When More than 10 historical transactions have occurred, the user will be able to page through
-                  the transactions by 10 transactions at a time-->
+                <!-- When More than 8 transactions have occurred, the user will be able to page through
+                  the transactions 8 at a time-->
                 <c:if test="${account_pager.previous}">
-                    <a class="btn btn-default btn-sm"
+                    <!--turns link into button-->  <a class="btn btn-default btn-sm"
                        href="/mvc/secure/account/savings?page=<c:out value="${account_pager.previousPage}"/>">Previous</a>
                 </c:if>
             </div>
@@ -174,7 +174,8 @@
 <footer class="footer">
     <div class="pull-center">
         Current Page: <c:out value="${account_pager.currentPage}"/>
-        Total Transactions: <c:out value="${account_pager.totalPages}"/>
+        Total Pages: <c:out value="${account_pager.totalPages}"/>
+        Total Transactions: <c:out value="${account_pager.totalTransactions}"/>
     </div>
 
 

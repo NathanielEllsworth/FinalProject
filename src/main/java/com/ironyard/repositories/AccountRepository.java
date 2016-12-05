@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
+ *  Connects the User and Account where the account can be found by the user ID (look in class MvcAccountController)
+ *
  * Created by nathanielellsworth on 11/14/16.
  */
 

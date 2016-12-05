@@ -7,7 +7,8 @@ import javax.persistence.Id;
 
 /**
  *
- * The permission class is allowing or denying access to the user the ability to purchase Treasury Bills.
+ * The permission class is allowing or denying the user the ability to:
+ * purchase Treasury Bills, add other users or edit the Account's Transaction History
  * In order for the user to purchase Treasury Bills they must have, by law, a minimum of $1,000 US Dollars.
  *
  * Created by nathanielellsworth on 11/4/16.

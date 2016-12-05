@@ -177,7 +177,7 @@ public class MvcAdminController {
 
     /**
      *
-     * @param model the user to the permissions granted by the Admin user
+     * @param model the user to the permissions that is granted by the Admin user
      */
     private void addUserAndPermList(Model model){
         Iterable<TheUser> users = userRepository.findAll();

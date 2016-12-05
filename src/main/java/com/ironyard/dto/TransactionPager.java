@@ -13,24 +13,16 @@ public class TransactionPager {
     private int currentPage;
     private int previousPage;
     private int nextPage;
-    private int totalPages;
     private int totalTransactions;
+    private int totalPages;
 
     //Design change, moved paging logic to MvcAccountController (Lines 94 to 103)
 
-    public TransactionPager(int currentPage, int previousPage, int nextPage, int totalPages, int totalTransactions) {
+    public TransactionPager(int currentPage, int previousPage, int nextPage, int totalTransactions, int totalPages) {
         this.currentPage = currentPage;
         this.previousPage = previousPage;
         this.nextPage = nextPage;
-        this.totalPages = totalPages;
         this.totalTransactions = totalTransactions;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
 
@@ -42,9 +34,15 @@ public class TransactionPager {
         this.totalTransactions = totalTransactions;
     }
 
-    public int getCurrentPage() {
-        return currentPage;
+    public int getTotalPages() {
+        return totalPages;
     }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public int getCurrentPage() {return currentPage + 1;}
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
@@ -65,6 +63,11 @@ public class TransactionPager {
     public void setNextPage(int nextPage) {
         this.nextPage = nextPage;
     }
+
+
+//________________________________________________________________________________________________
+//             Below is what's used in the home.jsp's paging (lines 104 and 110)
+
 
     public boolean isNext(){
         return nextPage > 0;
